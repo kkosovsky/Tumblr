@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6ABA35691E26911D005D9EF0 /* PostsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA35681E26911D005D9EF0 /* PostsListView.swift */; };
+		6ABA356F1E2692CB005D9EF0 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA356D1E2692CB005D9EF0 /* ReusableView.swift */; };
+		6ABA35701E2692CB005D9EF0 /* UITableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA356E1E2692CB005D9EF0 /* UITableViewExtensions.swift */; };
 		6AFAB33E1E26845300C7FAE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AFAB33A1E26845300C7FAE0 /* Assets.xcassets */; };
 		6AFAB33F1E26845300C7FAE0 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6AFAB33C1E26845300C7FAE0 /* Info.plist */; };
 		6AFAB3411E2684D700C7FAE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AFAB3401E2684D700C7FAE0 /* LaunchScreen.storyboard */; };
@@ -22,6 +24,8 @@
 /* Begin PBXFileReference section */
 		466EBD84565AF417B5CC2DBD /* Pods_Tumblr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tumblr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ABA35681E26911D005D9EF0 /* PostsListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsListView.swift; sourceTree = "<group>"; };
+		6ABA356D1E2692CB005D9EF0 /* ReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
+		6ABA356E1E2692CB005D9EF0 /* UITableViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtensions.swift; sourceTree = "<group>"; };
 		6AFAB31B1E2680E300C7FAE0 /* Tumblr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tumblr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AFAB33A1E26845300C7FAE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6AFAB33C1E26845300C7FAE0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -53,6 +57,31 @@
 				466EBD84565AF417B5CC2DBD /* Pods_Tumblr.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6ABA356A1E2692CB005D9EF0 /* UITableView */ = {
+			isa = PBXGroup;
+			children = (
+				6ABA356B1E2692CB005D9EF0 /* Components */,
+				6ABA356E1E2692CB005D9EF0 /* UITableViewExtensions.swift */,
+			);
+			path = UITableView;
+			sourceTree = "<group>";
+		};
+		6ABA356B1E2692CB005D9EF0 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				6ABA356C1E2692CB005D9EF0 /* Reusable */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		6ABA356C1E2692CB005D9EF0 /* Reusable */ = {
+			isa = PBXGroup;
+			children = (
+				6ABA356D1E2692CB005D9EF0 /* ReusableView.swift */,
+			);
+			path = Reusable;
 			sourceTree = "<group>";
 		};
 		6AFAB3121E2680E300C7FAE0 = {
@@ -133,6 +162,7 @@
 		6AFAB3461E26850D00C7FAE0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				6ABA356A1E2692CB005D9EF0 /* UITableView */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -403,7 +433,9 @@
 				6ABA35691E26911D005D9EF0 /* PostsListView.swift in Sources */,
 				6AFAB3621E268BAF00C7FAE0 /* PostsListViewController.swift in Sources */,
 				6AFAB3601E268A4B00C7FAE0 /* PostsListWireframe.swift in Sources */,
+				6ABA356F1E2692CB005D9EF0 /* ReusableView.swift in Sources */,
 				6AFAB34A1E26850D00C7FAE0 /* AppDelegate.swift in Sources */,
+				6ABA35701E2692CB005D9EF0 /* UITableViewExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
