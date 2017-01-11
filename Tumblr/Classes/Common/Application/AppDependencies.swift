@@ -25,7 +25,8 @@ class AppDependencies {
     }
     
      private func configureDependencies() {
-    
+        let rootWireframe = RootWireframe()
+        postsListWireframe.rootWireframe = rootWireframe
     }
     
 }

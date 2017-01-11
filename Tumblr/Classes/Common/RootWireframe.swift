@@ -8,13 +8,16 @@
 
 import UIKit
 
-func show(_ viewController: UIViewController?, inWindow window: UIWindow) {
-    guard let initialViewController = viewController else { return }
-    window.rootViewController = instantiateNavigationController(withFirstViewController: initialViewController)
-}
+class RootWireframe {
 
-private func instantiateNavigationController(withFirstViewController viewController: UIViewController) -> UINavigationController {
-    let navigationController = UINavigationController()
-    navigationController.viewControllers = [viewController]
-    return navigationController
+    func show(_ viewController: UIViewController?, inWindow window: UIWindow) {
+        guard let initialViewController = viewController else { return }
+        window.rootViewController = instantiateNavigationController(withFirstViewController: initialViewController)
+    }
+
+    private func instantiateNavigationController(withFirstViewController viewController: UIViewController) -> UINavigationController {
+        let navigationController = UINavigationController()
+        navigationController.viewControllers = [viewController]
+        return navigationController
+    }
 }
