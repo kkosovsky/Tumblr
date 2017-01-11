@@ -12,6 +12,8 @@
 		6AFAB3411E2684D700C7FAE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AFAB3401E2684D700C7FAE0 /* LaunchScreen.storyboard */; };
 		6AFAB34A1E26850D00C7FAE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AFAB3451E26850D00C7FAE0 /* AppDelegate.swift */; };
 		6AFAB35C1E26899F00C7FAE0 /* RootWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AFAB35B1E26899F00C7FAE0 /* RootWireframe.swift */; };
+		6AFAB35E1E2689D400C7FAE0 /* AppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AFAB35D1E2689D400C7FAE0 /* AppDependencies.swift */; };
+		6AFAB3601E268A4B00C7FAE0 /* PostsListWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AFAB35F1E268A4B00C7FAE0 /* PostsListWireframe.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +23,8 @@
 		6AFAB3401E2684D700C7FAE0 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Tumblr/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6AFAB3451E26850D00C7FAE0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6AFAB35B1E26899F00C7FAE0 /* RootWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootWireframe.swift; sourceTree = "<group>"; };
+		6AFAB35D1E2689D400C7FAE0 /* AppDependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDependencies.swift; sourceTree = "<group>"; };
+		6AFAB35F1E268A4B00C7FAE0 /* PostsListWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsListWireframe.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				6AFAB3451E26850D00C7FAE0 /* AppDelegate.swift */,
+				6AFAB35D1E2689D400C7FAE0 /* AppDependencies.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -227,6 +232,7 @@
 		6AFAB3571E2685D600C7FAE0 /* Wireframe */ = {
 			isa = PBXGroup;
 			children = (
+				6AFAB35F1E268A4B00C7FAE0 /* PostsListWireframe.swift */,
 			);
 			path = Wireframe;
 			sourceTree = "<group>";
@@ -311,7 +317,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AFAB35E1E2689D400C7FAE0 /* AppDependencies.swift in Sources */,
 				6AFAB35C1E26899F00C7FAE0 /* RootWireframe.swift in Sources */,
+				6AFAB3601E268A4B00C7FAE0 /* PostsListWireframe.swift in Sources */,
 				6AFAB34A1E26850D00C7FAE0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
