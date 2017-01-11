@@ -13,5 +13,7 @@ class PostsListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view = PostsListView()
+        let url = URL.urlFor(endpoint: Endpoint.getAllPosts("beauty"))
+        print(url)
     }
 }

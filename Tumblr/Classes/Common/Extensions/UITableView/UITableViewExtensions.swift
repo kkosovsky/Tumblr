@@ -1,9 +1,9 @@
 //
 //  UITableViewExtensions.swift
-//  RandomUser
+//  Tumblr
 //
-//  Created by Kamil on 29.12.2016.
-//  Copyright © 2016 Kamil. All rights reserved.
+//  Created by Kamil on 11.01.2016.
+//  Copyright © 2017 Kamil. All rights reserved.
 //
 
 import UIKit
