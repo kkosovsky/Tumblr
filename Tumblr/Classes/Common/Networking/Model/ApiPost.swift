@@ -10,7 +10,7 @@ import Foundation
 import Decodable
 
 
-struct Post {
+struct ApiPost {
     
     var id: String
     var url: String
@@ -24,10 +24,10 @@ struct Post {
     var tags: [String]?
 }
 
-extension Post: Decodable {
+extension ApiPost: Decodable {
     
-    static func decode(_ json: Any) throws -> Post {
-        return try Post(
+    static func decode(_ json: Any) throws -> ApiPost {
+        return try ApiPost(
             id: json => "id",
             url: json => "url",
             type: json => "type",

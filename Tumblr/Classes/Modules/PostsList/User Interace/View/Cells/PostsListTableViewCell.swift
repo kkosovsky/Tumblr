@@ -108,7 +108,7 @@ class PostsListTableViewCell: UITableViewCell {
         
     }
     
-    func setup(withItem item: Post, eventHandler: PostsListModuleInterface?) {
+    func setup(withItem item: ApiPost, eventHandler: PostsListModuleInterface?) {
         guard let photo500 = item.photo400 else { return }
         blogNameLabel.text = item.date
         task = eventHandler?.updateImageView(photo500, imageView: posterImageView)

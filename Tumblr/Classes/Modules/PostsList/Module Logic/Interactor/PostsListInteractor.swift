@@ -22,9 +22,13 @@ class PostsListInteractor {
 
 extension PostsListInteractor: PostsListInteractorInput {
 
-    func getAllPosts() -> Observable<[Post]> {
+    func getAllPosts() -> Observable<[ApiPost]> {
         guard let dataStore = dataStore else { return Observable.empty() }
         return dataStore.getAllPosts()
+    }
+    
+    func fetchImage(forImageView imageView: UIImageView, withPath path: String) -> URLSessionDataTask? {
+        return dataStore?.fetchImage(forImageView: imageView, withPath: path)
     }
     
 }

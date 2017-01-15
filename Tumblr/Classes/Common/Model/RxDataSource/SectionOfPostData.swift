@@ -19,7 +19,7 @@ struct SectionOfPostData {
 
 extension SectionOfPostData: SectionModelType {
     
-    typealias Item = Post
+    typealias Item = ApiPost
     
     init(original: SectionOfPostData, items: [Item]) {
         self = original

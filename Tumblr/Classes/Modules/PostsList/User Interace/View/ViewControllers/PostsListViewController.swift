@@ -14,7 +14,7 @@ import RxDataSources
 class PostsListViewController: UIViewController {
     
     let disposeBag = DisposeBag()
-    let posts = Variable<[Post]>([])
+    let posts = Variable<[ApiPost]>([])
     let postsListView = PostsListView()
     let dataSource = RxTableViewSectionedReloadDataSource<SectionOfPostData>()
     var eventHandler: PostsListModuleInterface?

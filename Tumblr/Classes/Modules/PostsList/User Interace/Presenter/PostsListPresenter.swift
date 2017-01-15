@@ -17,28 +17,20 @@ class PostsListPresenter {
 
 extension PostsListPresenter: PostsListModuleInterface {
 
-    func feedWithPosts() -> Observable<[Post]> {
+    func feedWithPosts() -> Observable<[ApiPost]> {
         guard let postsListInteractor = postsListInteractor else { return Observable.empty() }
         return postsListInteractor.getAllPosts()
     }
     
     func updateImageView(_ imagePath: String, imageView: UIImageView) -> URLSessionDataTask? {
-        guard let url = URL(string: imagePath) else { return nil }
-        return URLSession(configuration: .ephemeral).dataTask(with: url) { [weak self] data, response, error in
-            guard let myData = data else { return }
-           
-            DispatchQueue.main.async {
-                imageView.image = UIImage(data:myData)
-                //self?.userListInteractor?.cacheImage(myData, id: user.email.hashValue)
-            }
-        }
+       return postsListInteractor?.fetchImage(forImageView: imageView, withPath: imagePath)
     }
     
 }
 
 extension PostsListPresenter: PostsListInteractorOutput {
     
-    func showAllPosts() -> Observable<[Post]> {
+    func showAllPosts() -> Observable<[ApiPost]> {
         return Observable.empty()
     }
     
