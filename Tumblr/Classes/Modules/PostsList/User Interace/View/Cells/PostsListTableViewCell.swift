@@ -32,6 +32,7 @@ class PostsListTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubviews()
         setLayout()
+        contentView.backgroundColor = UIColor.green
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -43,13 +44,15 @@ class PostsListTableViewCell: UITableViewCell {
     }
     
     private func addSubviews() {
-        addSubview(posterImageView)
+        
     }
     
     private func setLayout() {
-        posterImageView.snp.makeConstraints {
-            $0.edges.equalTo(0)
-        }
+
+    }
+    
+    func setup() {
+        //posterImageView.image = UIImage(named: "Blur_placeholder")
     }
     
 }

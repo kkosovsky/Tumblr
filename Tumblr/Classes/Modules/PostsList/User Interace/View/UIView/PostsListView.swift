@@ -22,18 +22,18 @@ class PostsListView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let userTableView: UITableView = {
+    let postsTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.tableFooterView = UIView()
         return tableView
     }()
     
     private func addSubviews() {
-        addSubview(userTableView)
+        addSubview(postsTableView)
     }
     
     private func setupLayout() {
-        userTableView.snp.makeConstraints {
+        postsTableView.snp.makeConstraints {
             $0.edges.equalTo(0)
         }
     }

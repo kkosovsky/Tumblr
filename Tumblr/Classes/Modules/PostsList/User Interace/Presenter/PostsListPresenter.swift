@@ -11,7 +11,7 @@ import RxSwift
 
 class PostsListPresenter {
     
-    var postsListInteractor: PostsListInteractor?
+    var postsListInteractor: PostsListInteractorInput?
     
 }
 

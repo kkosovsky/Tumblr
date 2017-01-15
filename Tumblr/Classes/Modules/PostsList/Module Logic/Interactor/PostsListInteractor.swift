@@ -12,13 +12,19 @@ import RxSwift
 class PostsListInteractor {
     
     var postInteractorOutput: PostsListInteractorOutput?
+    var dataStore: PostsListDataStore?
     
+    init(_ interactorOutput: PostsListInteractorOutput, dataStore: PostsListDataStore) {
+        self.postInteractorOutput = interactorOutput
+        self.dataStore = dataStore
+    }
 }
 
 extension PostsListInteractor: PostsListInteractorInput {
 
     func getAllPosts() -> Observable<[Post]> {
-        return Observable.empty()
+        guard let dataStore = dataStore else { return Observable.empty() }
+        return dataStore.getAllPosts()
     }
     
 }

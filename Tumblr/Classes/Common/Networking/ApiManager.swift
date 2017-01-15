@@ -12,7 +12,7 @@ import RxCocoa
 
 class ApiManager {
     
-    func requestUsers(endpoint: Endpoint) -> Observable<[Post]>  {
+    func requestPosts(endpoint: Endpoint) -> Observable<[Post]>  {
         guard let url = URL.urlFor(endpoint: endpoint) else { return Observable.empty() }
         let request = URLRequest(url: url)
         return URLSession.shared.rx.fetchRequest(request)
@@ -20,5 +20,5 @@ class ApiManager {
             .flatMap{ $0.0.parse() }
             .shareReplay(1)
     }
-    
+
 }
