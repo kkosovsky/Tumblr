@@ -61,7 +61,7 @@ class PostsListViewController: UIViewController {
 extension PostsListViewController: UITableViewDelegate {
  
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 450
+        return 550
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {

@@ -15,7 +15,7 @@ class PostsListView: UIView {
         super.init(frame: .zero)
         addSubviews()
         setupLayout()
-        backgroundColor = UIColor.white
+        backgroundColor = .TumblrBackground()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -25,6 +25,8 @@ class PostsListView: UIView {
     let postsTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.tableFooterView = UIView()
+        tableView.backgroundColor = .TumblrBackground()
+        tableView.showsVerticalScrollIndicator = false
         return tableView
     }()
     
@@ -34,7 +36,10 @@ class PostsListView: UIView {
     
     private func setupLayout() {
         postsTableView.snp.makeConstraints {
-            $0.edges.equalTo(0)
+            $0.top.equalTo(0)
+            $0.left.equalTo(16)
+            $0.right.equalTo(-16)
+            $0.bottom.equalTo(0)
         }
     }
 

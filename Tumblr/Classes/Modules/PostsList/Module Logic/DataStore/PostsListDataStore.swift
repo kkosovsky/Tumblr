@@ -23,7 +23,7 @@ extension PostsListDataStore: PostsListNetworkInterface {
 
     func getAllPosts() -> Observable<[Post]> {
         guard let apiManager = apiManager else { return Observable.empty() }
-        return apiManager.requestPosts(endpoint: Endpoint.getAllPosts("Beauty"))
+        return apiManager.requestPosts(endpoint: Endpoint.getAllPosts("thetimeandspaceblog"))
     }
     
 }

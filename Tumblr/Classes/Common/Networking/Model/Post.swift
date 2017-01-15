@@ -16,10 +16,12 @@ struct Post {
     var url: String
     var type: String
     var date: String
-    var photo1280: String
-    var photo500: String
-    var photo400: String
-    var photo100: String
+    var photo1280: String?
+    var photo500: String?
+    var photo400: String?
+    var photo100: String?
+    var photoCaption: String?
+    var tags: [String]?
 }
 
 extension Post: Decodable {
@@ -30,10 +32,12 @@ extension Post: Decodable {
             url: json => "url",
             type: json => "type",
             date: json => "date",
-            photo1280: json => "photo-url-1280",
-            photo500: json => "photo-url-500",
-            photo400: json => "photo-url-400",
-            photo100: json => "photo-url-100"
+            photo1280: json =>? "photo-url-1280",
+            photo500: json =>? "photo-url-500",
+            photo400: json =>? "photo-url-400",
+            photo100: json =>? "photo-url-100",
+            photoCaption: json =>? "photo-caption",
+            tags: json =>? "tags"
         )
     }
 }

@@ -24,9 +24,14 @@ class PostsListTableViewCell: UITableViewCell {
         return blogNameLabel
     }()
     
-    private let blogNameBackground: UIView = {
-        return UIView(frame: .zero)
-    }()
+    private let blogDetailsContainer = PostsListTableViewCell.createContainerView()
+    private let captionContainer = PostsListTableViewCell.createContainerView()
+    
+    private static func createContainerView() -> UIView {
+        let container = UIView(frame: .zero)
+        container.backgroundColor = UIColor.white
+        return container
+    }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -39,19 +44,59 @@ class PostsListTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        addShadow()
+    }
+    
+    private func addShadow() {
+        let shadowPath = UIBezierPath(rect: bounds)
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0.0, height: 5.0)
+        layer.shadowOpacity = 0.5
+        layer.shadowPath = shadowPath.cgPath
+    }
+
+    
     override func prepareForReuse() {
         super.prepareForReuse()
     }
     
     private func addSubviews() {
-        contentView.addSubview(blogNameLabel)
+        contentView.addSubview(blogDetailsContainer)
+        contentView.addSubview(posterImageView)
+        contentView.addSubview(captionContainer)
+        blogDetailsContainer.addSubview(blogNameLabel)
     }
     
     private func setLayout() {
-        blogNameLabel.snp.makeConstraints {
-            $0.centerXWithinMargins.equalTo(0)
-            $0.centerYWithinMargins.equalTo(0)
+        blogDetailsContainer.snp.makeConstraints {
+            $0.top.equalTo(0)
+            $0.left.equalTo(0)
+            $0.right.equalTo(0)
+            $0.height.equalTo(50)
         }
+        
+        blogNameLabel.snp.makeConstraints {
+            $0.top.centerXWithinMargins.equalTo(0)
+            $0.top.centerYWithinMargins.equalTo(0)
+        }
+        
+        captionContainer.snp.makeConstraints {
+            $0.bottom.equalTo(0)
+            $0.left.equalTo(0)
+            $0.right.equalTo(0)
+            $0.height.equalTo(125)
+        }
+        
+        posterImageView.snp.makeConstraints {
+            $0.top.equalTo(blogDetailsContainer.snp.bottom)
+            $0.bottom.equalTo(captionContainer.snp.top)
+            $0.left.equalTo(0)
+            $0.right.equalTo(0)
+        }
+        
     }
     
     func setup(_ text: String) {
