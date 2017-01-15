@@ -7,18 +7,21 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class PostsListViewController: UIViewController {
-
-    let apiManager = ApiManager()
+    
+    let disposeBag = DisposeBag()
+    let posts = Variable<[Post]>([])
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view = PostsListView()
         
-          apiManager.requestUsers(endpoint: Endpoint.getAllPosts("beauty")).subscribe(onNext: { posts in
-            print("posty to: ", posts)
-          })
-        
     }
+    
+    
 }
+
