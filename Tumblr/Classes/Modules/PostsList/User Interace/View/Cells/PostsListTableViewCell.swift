@@ -44,15 +44,18 @@ class PostsListTableViewCell: UITableViewCell {
     }
     
     private func addSubviews() {
-        
+        contentView.addSubview(blogNameLabel)
     }
     
     private func setLayout() {
-
+        blogNameLabel.snp.makeConstraints {
+            $0.centerXWithinMargins.equalTo(0)
+            $0.centerYWithinMargins.equalTo(0)
+        }
     }
     
-    func setup() {
-        //posterImageView.image = UIImage(named: "Blur_placeholder")
+    func setup(_ text: String) {
+        blogNameLabel.text = text
     }
     
 }

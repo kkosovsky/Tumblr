@@ -9,13 +9,15 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxDataSources
 
 class PostsListViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     let posts = Variable<[Post]>([])
-    var eventHandler: PostsListModuleInterface?
     let postsListView = PostsListView()
+    let dataSource = RxTableViewSectionedReloadDataSource<SectionOfPostData>()
+    var eventHandler: PostsListModuleInterface?
     
     init(withEventHandler eventHandler: PostsListModuleInterface) {
         super.init(nibName: nil, bundle: nil)
@@ -33,19 +35,26 @@ class PostsListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        postsListView.postsTableView.delegate = self
         eventHandler?.feedWithPosts().bindTo(posts).addDisposableTo(disposeBag)
         postsListView.postsTableView.register(PostsListTableViewCell.self)
-        postsListView.postsTableView.delegate = self
-        bindUsersTo(postsListView.postsTableView)
+        configureDataSource()
+        bindPostsToTableView()
     }
     
-    private func bindUsersTo(_ tableView: UITableView?) {
-        guard let tableView = tableView else { return }
-        posts.asObservable().bindTo(tableView.rx.items) { (tableView, row, user) in
-            let cell = tableView.dequeueReusableCell(forIndexPath: IndexPath(row: row, section: 0)) as PostsListTableViewCell
-            cell.setup()
+    private func configureDataSource() {
+        dataSource.configureCell = { dataSource, tableView, indexPath, item in
+            let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as PostsListTableViewCell
+            cell.setup(item.date)
             return cell
-            }.addDisposableTo(disposeBag)
+        }
+    }
+
+    private func bindPostsToTableView() {
+        posts.asObservable()
+              .flatMap { Observable.just( $0.map { SectionOfPostData(header: $0.id, items: [$0]) } ) }
+              .bindTo(postsListView.postsTableView.rx.items(dataSource: dataSource))
+              .addDisposableTo(disposeBag)
     }
 }
 
