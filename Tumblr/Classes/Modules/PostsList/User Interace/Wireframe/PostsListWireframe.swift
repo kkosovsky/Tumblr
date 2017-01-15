@@ -11,10 +11,12 @@ import UIKit
 class PostsListWireframe {
     
     var rootWireframe: RootWireframe?
+    var postsListPresenter: PostsListPresenter?
     var postsListViewController: PostsListViewController?
     
      func presentPostsListInterface(inWindow window: UIWindow) {
-        postsListViewController = PostsListViewController()
+        guard let postsListPresenter = postsListPresenter else { return }
+        postsListViewController = PostsListViewController(withEventHandler: postsListPresenter)
         rootWireframe?.show(postsListViewController, inWindow: window)
     }
     

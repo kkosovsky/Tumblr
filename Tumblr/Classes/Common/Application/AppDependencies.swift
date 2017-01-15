@@ -26,7 +26,15 @@ class AppDependencies {
     
      private func configureDependencies() {
         let rootWireframe = RootWireframe()
+        
+        let postsListPresenter = PostsListPresenter()
+        let postsListInteractor = PostsListInteractor()
+        
         postsListWireframe.rootWireframe = rootWireframe
+        postsListWireframe.postsListPresenter = postsListPresenter
+        postsListPresenter.postsListInteractor = postsListInteractor
+        postsListInteractor.postInteractorOutput = postsListPresenter
+        
     }
     
 }
