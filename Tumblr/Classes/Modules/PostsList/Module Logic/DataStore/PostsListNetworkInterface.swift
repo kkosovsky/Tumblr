@@ -14,4 +14,3 @@ protocol PostsListNetworkInterface {
     func getAllPosts() -> Observable<[ApiPost]>
     func fetchImage(forImageView imageView: UIImageView, withPath path: String) -> URLSessionDataTask?
 }
-
