@@ -33,6 +33,12 @@ class PostsListTableViewCell: UITableViewCell {
         return container
     }
     
+    var task: URLSessionDataTask? {
+        didSet {
+            task?.resume()
+        }
+    }
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubviews()
@@ -61,6 +67,9 @@ class PostsListTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        self.task?.cancel()
+        self.task = nil
+        posterImageView.image = UIImage(named: "Blur_placeholder")
     }
     
     private func addSubviews() {
@@ -99,8 +108,10 @@ class PostsListTableViewCell: UITableViewCell {
         
     }
     
-    func setup(_ text: String) {
-        blogNameLabel.text = text
+    func setup(withItem item: Post, eventHandler: PostsListModuleInterface?) {
+        guard let photo500 = item.photo400 else { return }
+        blogNameLabel.text = item.date
+        task = eventHandler?.updateImageView(photo500, imageView: posterImageView)
     }
     
 }

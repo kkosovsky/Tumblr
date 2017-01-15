@@ -43,9 +43,10 @@ class PostsListViewController: UIViewController {
     }
     
     private func configureDataSource() {
-        dataSource.configureCell = { dataSource, tableView, indexPath, item in
+        dataSource.configureCell = { [weak self] dataSource, tableView, indexPath, item in
+            guard let unwrappedSelf = self else { return UITableViewCell() }
             let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as PostsListTableViewCell
-            cell.setup(item.date)
+            cell.setup(withItem: item, eventHandler: unwrappedSelf.eventHandler)
             return cell
         }
     }

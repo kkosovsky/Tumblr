@@ -22,6 +22,18 @@ extension PostsListPresenter: PostsListModuleInterface {
         return postsListInteractor.getAllPosts()
     }
     
+    func updateImageView(_ imagePath: String, imageView: UIImageView) -> URLSessionDataTask? {
+        guard let url = URL(string: imagePath) else { return nil }
+        return URLSession(configuration: .ephemeral).dataTask(with: url) { [weak self] data, response, error in
+            guard let myData = data else { return }
+           
+            DispatchQueue.main.async {
+                imageView.image = UIImage(data:myData)
+                //self?.userListInteractor?.cacheImage(myData, id: user.email.hashValue)
+            }
+        }
+    }
+    
 }
 
 extension PostsListPresenter: PostsListInteractorOutput {
