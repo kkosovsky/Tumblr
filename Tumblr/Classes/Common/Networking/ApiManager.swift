@@ -17,13 +17,8 @@ class ApiManager {
         let request = URLRequest(url: url)
         return URLSession.shared.rx.fetchRequest(request)
             .observeOn(MainScheduler.instance)
-            .flatMap({ (data, response) -> Observable<[Post]> in
-                let posts = data.parse()
-                return posts
-            })
+            .flatMap{ $0.0.parse() }
             .shareReplay(1)
-        
-       // .flatMap{ $0.0.parse() }
     }
     
 }
