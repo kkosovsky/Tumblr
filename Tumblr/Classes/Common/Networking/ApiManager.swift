@@ -21,14 +21,14 @@ class ApiManager {
             .shareReplay(1)
     }
     
-    func fetchImage(_ imageView: UIImageView, imagePath: String) -> URLSessionDataTask? {
+    func fetchImage(_ imageView: UIImageView, imagePath: String, completion: @escaping (_ data: Data) -> Void) -> URLSessionDataTask? {
         guard let url = URL(string: imagePath) else { return nil }
         return URLSession(configuration: .ephemeral).dataTask(with: url) { data, response, error in
             guard let myData = data else { return }
             //user.pictureThumbnail = myData
             DispatchQueue.main.async {
                 imageView.image = UIImage(data:myData)
-               // self?.userListInteractor?.cacheImage(myData, id: user.email.hashValue)
+                completion(myData)
             }
         }
 

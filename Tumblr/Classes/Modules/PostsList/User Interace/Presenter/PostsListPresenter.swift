@@ -17,13 +17,17 @@ class PostsListPresenter {
 
 extension PostsListPresenter: PostsListModuleInterface {
 
-    func feedWithPosts() -> Observable<[ApiPost]> {
+    func feedWithPosts() -> Observable<[Post]> {
         guard let postsListInteractor = postsListInteractor else { return Observable.empty() }
         return postsListInteractor.getAllPosts()
     }
     
-    func updateImageView(_ imagePath: String, imageView: UIImageView) -> URLSessionDataTask? {
-       return postsListInteractor?.fetchImage(forImageView: imageView, withPath: imagePath)
+    func updateImageView(_ imagePath: String, imageView: UIImageView, postId: Int) -> URLSessionDataTask? {
+        return postsListInteractor?.fetchImage(forImageView: imageView, withPath: imagePath, postId: postId)
+    }
+    
+    func passPostsForCache(_ posts: [Post]) {
+        postsListInteractor?.cachePosts(posts)
     }
     
 }

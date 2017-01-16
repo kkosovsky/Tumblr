@@ -11,6 +11,9 @@ import SnapKit
 
 class PostsListTableViewCell: UITableViewCell {
     
+    private let blogDetailsContainer = PostsListTableViewCell.createContainerView()
+    private let captionContainer = PostsListTableViewCell.createContainerView()
+    
     private let posterImageView: UIImageView = {
         let posterImageView = UIImageView(frame: .zero)
         posterImageView.image = UIImage(named: "Blur_placeholder")
@@ -23,9 +26,6 @@ class PostsListTableViewCell: UITableViewCell {
         let blogNameLabel = UILabel(frame: .zero)
         return blogNameLabel
     }()
-    
-    private let blogDetailsContainer = PostsListTableViewCell.createContainerView()
-    private let captionContainer = PostsListTableViewCell.createContainerView()
     
     private static func createContainerView() -> UIView {
         let container = UIView(frame: .zero)
@@ -108,10 +108,10 @@ class PostsListTableViewCell: UITableViewCell {
         
     }
     
-    func setup(withItem item: ApiPost, eventHandler: PostsListModuleInterface?) {
-        guard let photo500 = item.photo400 else { return }
+    func setup(withItem item: Post, eventHandler: PostsListModuleInterface?) {
+        guard let photoPath = item.smalllPhotoPath else { return }
         blogNameLabel.text = item.date
-        task = eventHandler?.updateImageView(photo500, imageView: posterImageView)
+        task = eventHandler?.updateImageView(photoPath, imageView: posterImageView, postId: item.id)
     }
     
 }

@@ -15,25 +15,45 @@ class DatabasePost: Object {
     dynamic var url = ""
     dynamic var type = ""
     dynamic var date = ""
-    dynamic var thumbnailPath: String?
-    dynamic var largeImagePath: String?
-    dynamic var caption: String?
+    dynamic var smallPhotoPath: String?
+    dynamic var largePhotoPath: String?
+    dynamic var smallPhoto: Data?
+    dynamic var largePhoto: Data?
+    dynamic var photoCaption: String?
     var tags = List<Tag>()
     
-    func setUp(withApiModel apiModel: ApiPost) {
-        if let newId = Int(apiModel.id) {
+    func setUp(withapiPost apiPost: ApiPost) {
+        if let newId = Int(apiPost.id) {
             id = newId
         }
-        url = apiModel.url
-        type = apiModel.type
-        date = apiModel.date
-        caption = apiModel.photoCaption
-        apiModel.tags?.forEach({ (apiFetchedTag) in
+        url = apiPost.url
+        type = apiPost.type
+        date = apiPost.date
+        photoCaption = apiPost.photoCaption
+        apiPost.tags?.forEach({ (apiFetchedTag) in
             let tag = Tag()
             tag.tagName = apiFetchedTag
             tags.append(tag)
         })
     }
+    
+    func setUp(withPlainObjectModel post: Post) {
+        id = post.id
+        url = post.url
+        type = post.type
+        date = post.date
+        smallPhotoPath = post.smalllPhotoPath
+        largePhotoPath = post.largePhotoPath
+        smallPhoto = post.smallPhoto
+        largePhoto = post.largePhoto
+        photoCaption = post.photoCaption
+        post.tags?.forEach({ (apiFetchedTag) in
+            let tag = Tag()
+            tag.tagName = apiFetchedTag
+            tags.append(tag)
+        })
+    }
+    
 }
 
 class Tag: Object {

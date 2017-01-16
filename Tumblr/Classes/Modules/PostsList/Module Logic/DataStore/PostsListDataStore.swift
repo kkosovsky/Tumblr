@@ -12,9 +12,11 @@ import RxSwift
 class PostsListDataStore {
 
     fileprivate var apiManager: ApiManager?
+    fileprivate var databaseManager: DatabaseManager?
     
-    init(_ apiManager: ApiManager) {
+    init(_ apiManager: ApiManager, databaseManager: DatabaseManager) {
         self.apiManager = apiManager
+        self.databaseManager = databaseManager
     }
     
 }
@@ -26,8 +28,18 @@ extension PostsListDataStore: PostsListNetworkInterface {
         return apiManager.requestPosts(endpoint: Endpoint.getAllPosts("thetimeandspaceblog"))
     }
     
-    func fetchImage(forImageView imageView: UIImageView, withPath path: String) -> URLSessionDataTask? {
-        return apiManager?.fetchImage(imageView, imagePath: path)
+    func fetchImage(forImageView imageView: UIImageView, withPath path: String, postId: Int) -> URLSessionDataTask? {
+        return apiManager?.fetchImage(imageView, imagePath: path) { [weak self] data in
+            self?.databaseManager?.cacheImage(data, withId: postId)
+        }
+    }
+    
+}
+
+extension PostsListDataStore: PostsListDatabaseInterface {
+    
+    func cachePostsData(_ posts: [DatabasePost]) {
+        databaseManager?.cachePosts(posts)
     }
     
 }

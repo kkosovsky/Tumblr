@@ -14,7 +14,7 @@ import RxDataSources
 class PostsListViewController: UIViewController {
     
     let disposeBag = DisposeBag()
-    let posts = Variable<[ApiPost]>([])
+    let posts = Variable<[Post]>([])
     let postsListView = PostsListView()
     let dataSource = RxTableViewSectionedReloadDataSource<SectionOfPostData>()
     var eventHandler: PostsListModuleInterface?
@@ -40,6 +40,13 @@ class PostsListViewController: UIViewController {
         postsListView.postsTableView.register(PostsListTableViewCell.self)
         configureDataSource()
         bindPostsToTableView()
+        subscribePosts()
+    }
+    
+    private func subscribePosts() {
+        posts.asObservable().subscribe(onNext: { [weak self] postsArray in
+            self?.eventHandler?.passPostsForCache(postsArray)
+        }).addDisposableTo(disposeBag)
     }
     
     private func configureDataSource() {

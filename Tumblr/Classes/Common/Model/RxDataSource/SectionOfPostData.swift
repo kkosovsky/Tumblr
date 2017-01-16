@@ -12,14 +12,14 @@ import RxDataSources
 
 struct SectionOfPostData {
    
-    var header: String
+    var header: Int
     var items: [Item]
     
 }
 
 extension SectionOfPostData: SectionModelType {
     
-    typealias Item = ApiPost
+    typealias Item = Post
     
     init(original: SectionOfPostData, items: [Item]) {
         self = original

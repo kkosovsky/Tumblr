@@ -11,6 +11,7 @@ import RxSwift
 
 protocol PostsListModuleInterface {
     
-    func feedWithPosts() -> Observable<[ApiPost]>
-    func updateImageView(_ imagePath: String, imageView: UIImageView) -> URLSessionDataTask?
+    func feedWithPosts() -> Observable<[Post]>
+    func updateImageView(_ imagePath: String, imageView: UIImageView, postId: Int) -> URLSessionDataTask?
+    func passPostsForCache(_ posts: [Post])
 }

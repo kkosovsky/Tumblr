@@ -28,7 +28,7 @@ class AppDependencies {
         let rootWireframe = RootWireframe()
         
         let postsListPresenter = PostsListPresenter()
-        let postsListDataStore = PostsListDataStore(ApiManager())
+        let postsListDataStore = PostsListDataStore(ApiManager(), databaseManager: DatabaseManager())
         let postsListInteractor = PostsListInteractor(postsListPresenter, dataStore: postsListDataStore)
         
         postsListWireframe.rootWireframe = rootWireframe
