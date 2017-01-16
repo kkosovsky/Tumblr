@@ -19,6 +19,10 @@ class PostsListDataStore {
         self.databaseManager = databaseManager
     }
     
+    func getPostsFrom() {
+        
+    }
+    
 }
 
 extension PostsListDataStore: PostsListNetworkInterface {
@@ -40,6 +44,11 @@ extension PostsListDataStore: PostsListDatabaseInterface {
     
     func cachePostsData(_ posts: [DatabasePost]) {
         databaseManager?.cachePosts(posts)
+    }
+    
+    func fetchAllPosts() -> Observable<[DatabasePost]> {
+        guard let databaseManager = databaseManager else { return Observable.empty() }
+        return databaseManager.fetchAll()
     }
     
 }

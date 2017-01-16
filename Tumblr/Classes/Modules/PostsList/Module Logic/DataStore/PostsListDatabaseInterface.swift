@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol PostsListDatabaseInterface {
 
     func cachePostsData(_ posts: [DatabasePost])
+    func fetchAllPosts() -> Observable<[DatabasePost]>
     
 }

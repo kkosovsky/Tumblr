@@ -29,6 +29,10 @@ class DatabaseManager {
        posts.forEach { addToDatabase($0) }
     }
     
+    func fetchAll() -> Observable<[DatabasePost]> {
+        return Observable.just(Array(realm.objects(DatabasePost.self)))
+    }
+    
     private func addToDatabase(_ post: DatabasePost) {
         if containsPost(withId: post.id) {
             return

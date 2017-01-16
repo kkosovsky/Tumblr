@@ -25,6 +25,11 @@ class PostsListInteractor {
         return Observable.just(posts)
     }
     
+    fileprivate func plainPostsFromDatabasePosts(_ databasePosts: [DatabasePost]) -> Observable<[Post]> {
+        let posts = databasePosts.flatMap { Post($0) }
+        return Observable.just(posts)
+    }
+    
     fileprivate func databasePostsFromPlainPosts(_ posts: [Post]) -> [DatabasePost] {
         return posts.flatMap { (post) -> DatabasePost? in
             let databasePost = DatabasePost()
@@ -39,7 +44,9 @@ extension PostsListInteractor: PostsListInteractorInput {
 
     func getAllPosts() -> Observable<[Post]> {
         guard let dataStore = dataStore else { return Observable.empty() }
-        return dataStore.getAllPosts().flatMap { self.plainPostsFromApiPosts($0) }
+        let apiPosts = dataStore.getAllPosts().flatMap { self.plainPostsFromApiPosts($0) }
+        let databasePosts = dataStore.fetchAllPosts().flatMap { self.plainPostsFromDatabasePosts($0) }
+        return databasePosts.concat(apiPosts)
     }
     
     func fetchImage(forImageView imageView: UIImageView, withPath path: String, postId: Int) -> URLSessionDataTask? {

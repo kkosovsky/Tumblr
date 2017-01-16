@@ -32,6 +32,17 @@ struct Post {
         tags = apiPost.tags
     }
     
+    init(_ databasePost: DatabasePost) {
+        id = databasePost.id
+        url = databasePost.url
+        type = databasePost.type
+        date = databasePost.date
+        largePhotoPath = databasePost.largePhotoPath
+        smalllPhotoPath = databasePost.smallPhotoPath
+        photoCaption = databasePost.photoCaption
+        tags = databasePost.tags.map{ $0.tagName }
+    }
+    
     private func findLargePhotoPath(_ apiPost: ApiPost) -> String? {
         let photoPath = apiPost.photo1280 != nil ? apiPost.photo1280 : apiPost.photo500 != nil ? apiPost.photo500 : nil
         return photoPath
