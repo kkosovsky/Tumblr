@@ -43,10 +43,10 @@ class PostsListInteractor {
 extension PostsListInteractor: PostsListInteractorInput {
 
     func getAllPosts() -> Observable<[Post]> {
-        guard let dataStore = dataStore else { return Observable.empty() }
+        guard let dataStore = dataStore, let postInteractorOutput = postInteractorOutput else { return Observable.empty() }
         let apiPosts = dataStore.getAllPosts().flatMap { self.plainPostsFromApiPosts($0) }
         let databasePosts = dataStore.fetchAllPosts().flatMap { self.plainPostsFromDatabasePosts($0) }
-        return databasePosts.concat(apiPosts)
+        return postInteractorOutput.presentData(databasePosts, apiPosts: apiPosts)
     }
     
     func fetchImage(forImageView imageView: UIImageView, withPath path: String, postId: Int) -> URLSessionDataTask? {

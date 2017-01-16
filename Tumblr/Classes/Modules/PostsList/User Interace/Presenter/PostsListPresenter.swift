@@ -34,8 +34,8 @@ extension PostsListPresenter: PostsListModuleInterface {
 
 extension PostsListPresenter: PostsListInteractorOutput {
     
-    func showAllPosts() -> Observable<[ApiPost]> {
-        return Observable.empty()
+    func presentData(_ databasePosts: Observable<[Post]>, apiPosts: Observable<[Post]>) -> Observable<[Post]> {
+        return databasePosts.concat(apiPosts)
     }
     
 }

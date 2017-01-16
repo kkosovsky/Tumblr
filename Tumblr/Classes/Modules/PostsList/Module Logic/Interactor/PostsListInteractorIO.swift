@@ -20,6 +20,6 @@ protocol PostsListInteractorInput {
 
 protocol PostsListInteractorOutput {
     
-    func showAllPosts() -> Observable<[ApiPost]>
+    func presentData(_ databasePosts: Observable<[Post]>, apiPosts: Observable<[Post]>) -> Observable<[Post]>
     
 }
