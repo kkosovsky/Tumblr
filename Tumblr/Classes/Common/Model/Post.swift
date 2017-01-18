@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Post {
+class Post {
 
     var id: Int
     var url: String
