@@ -42,15 +42,15 @@ class PostsListInteractor {
 
 extension PostsListInteractor: PostsListInteractorInput {
 
-    func getAllPosts() -> Observable<[Post]> {
+    func getAllPosts(_ source: Source) -> Observable<[Post]> {
         guard let dataStore = dataStore, let postInteractorOutput = postInteractorOutput else { return Observable.empty() }
         let apiPosts = dataStore.getAllPosts().flatMap { self.plainPostsFromApiPosts($0) }
         let databasePosts = dataStore.fetchAllPosts().flatMap { self.plainPostsFromDatabasePosts($0) }
-        return postInteractorOutput.presentData(databasePosts, apiPosts: apiPosts)
+        return postInteractorOutput.presentData(databasePosts, apiPosts: apiPosts, source: source)
     }
     
-    func fetchImage(forImageView imageView: UIImageView, withPath path: String, postId: Int) -> URLSessionDataTask? {
-        return dataStore?.fetchImage(forImageView: imageView, withPath: path, postId: postId)
+    func cacheImage(forImageView imageView: UIImageView, withPath path: String, forPostEntity post: Post) -> URLSessionDataTask? {
+        return dataStore?.cacheImage(forImageView: imageView, withPath: path, forPostEntity: post)
     }
     
     func cachePosts(_ posts: [Post]) {

@@ -36,11 +36,12 @@ class PostsListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         postsListView.postsTableView.delegate = self
-        eventHandler?.feedWithPosts().bindTo(posts).addDisposableTo(disposeBag)
+        eventHandler?.feedWithPosts(.Both).bindTo(posts).addDisposableTo(disposeBag)
         postsListView.postsTableView.register(PostsListTableViewCell.self)
         configureDataSource()
         bindPostsToTableView()
         subscribePosts()
+        DatabaseManager().printAllPosts()
     }
     
     private func subscribePosts() {

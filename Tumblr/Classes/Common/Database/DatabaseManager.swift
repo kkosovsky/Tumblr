@@ -22,7 +22,15 @@ class DatabaseManager {
     }
     
     func cacheImage(_ data: Data, withId id: Int) {
-        
+        let post = realm.objects(DatabasePost.self).filter("id == %@", id).first
+        guard post?.smallPhoto == nil else { return }
+            try! realm.write {
+                post?.smallPhoto = data
+        }
+    }
+    
+    func printAllPosts() {
+        print(realm.objects(DatabasePost.self).count)
     }
     
     func cachePosts(_ posts: [DatabasePost]) {

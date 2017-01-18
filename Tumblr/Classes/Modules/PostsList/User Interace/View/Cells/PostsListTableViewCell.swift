@@ -111,7 +111,13 @@ class PostsListTableViewCell: UITableViewCell {
     func setup(withItem item: Post, eventHandler: PostsListModuleInterface?) {
         guard let photoPath = item.smalllPhotoPath else { return }
         blogNameLabel.text = item.date
-        task = eventHandler?.updateImageView(photoPath, imageView: posterImageView, postId: item.id)
+        print("small photo: ", item.smallPhoto)
+        if let imageData = item.smallPhoto {
+            posterImageView.image = UIImage(data: imageData)
+        } else {
+             task = eventHandler?.updateImageView(photoPath, imageView: posterImageView, forPostEntity: item)
+        }
+       
     }
     
 }

@@ -9,6 +9,14 @@
 import Foundation
 import RxSwift
 
+enum Source {
+    
+    case Api
+    case Database
+    case Both
+    
+}
+
 class PostsListPresenter {
     
     var postsListInteractor: PostsListInteractorInput?
@@ -17,13 +25,13 @@ class PostsListPresenter {
 
 extension PostsListPresenter: PostsListModuleInterface {
 
-    func feedWithPosts() -> Observable<[Post]> {
+    func feedWithPosts(_ source: Source) -> Observable<[Post]> {
         guard let postsListInteractor = postsListInteractor else { return Observable.empty() }
-        return postsListInteractor.getAllPosts()
+        return postsListInteractor.getAllPosts(source)
     }
     
-    func updateImageView(_ imagePath: String, imageView: UIImageView, postId: Int) -> URLSessionDataTask? {
-        return postsListInteractor?.fetchImage(forImageView: imageView, withPath: imagePath, postId: postId)
+    func updateImageView(_ imagePath: String, imageView: UIImageView, forPostEntity post: Post) -> URLSessionDataTask? {
+        return postsListInteractor?.cacheImage(forImageView: imageView, withPath: imagePath, forPostEntity: post)
     }
     
     func passPostsForCache(_ posts: [Post]) {
@@ -34,8 +42,16 @@ extension PostsListPresenter: PostsListModuleInterface {
 
 extension PostsListPresenter: PostsListInteractorOutput {
     
-    func presentData(_ databasePosts: Observable<[Post]>, apiPosts: Observable<[Post]>) -> Observable<[Post]> {
-        return databasePosts.concat(apiPosts)
+    func presentData(_ databasePosts: Observable<[Post]>, apiPosts: Observable<[Post]>, source: Source) -> Observable<[Post]> {
+        switch source {
+            case .Api:
+                return apiPosts
+            case .Database:
+                return databasePosts
+            case .Both:
+                return databasePosts.concat(apiPosts)
+        }
+        
     }
     
 }
