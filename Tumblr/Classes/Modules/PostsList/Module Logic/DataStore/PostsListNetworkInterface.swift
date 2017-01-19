@@ -11,6 +11,6 @@ import RxSwift
 
 protocol PostsListNetworkInterface {
     
-    func getAllPosts() -> Observable<[ApiPost]>
+    func getAllPosts(_ blogName: String?) -> Observable<[ApiPost]>
     func cacheImage(forImageView imageView: UIImageView, withPath path: String, forPostEntity post: Post) -> URLSessionDataTask?
 }

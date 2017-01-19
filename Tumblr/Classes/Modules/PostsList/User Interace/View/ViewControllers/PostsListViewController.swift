@@ -18,6 +18,12 @@ class PostsListViewController: UIViewController {
     let postsListView = PostsListView()
     let dataSource = RxTableViewSectionedReloadDataSource<SectionOfPostData>()
     var eventHandler: PostsListModuleInterface?
+    var searchBar: UISearchBar = {
+        let searchBar = UISearchBar(frame: .zero)
+        searchBar.placeholder = "Enter blog name"
+        return searchBar
+    }()
+    
     
     init(withEventHandler eventHandler: PostsListModuleInterface) {
         super.init(nibName: nil, bundle: nil)
@@ -37,12 +43,12 @@ class PostsListViewController: UIViewController {
         super.viewDidLoad()
         DatabaseManager().clearDatabase()
         postsListView.postsTableView.delegate = self
-        eventHandler?.feedWithPosts(.Api).bindTo(posts).addDisposableTo(disposeBag)
+        
         postsListView.postsTableView.register(PostsListTableViewCell.self)
         configureDataSource()
         bindPostsToTableView()
         subscribePosts()
-        DatabaseManager().printAllPosts()
+        addSearchBar()
     }
     
     private func subscribePosts() {
@@ -60,6 +66,14 @@ class PostsListViewController: UIViewController {
         }
     }
 
+    private func addSearchBar() {
+        navigationItem.titleView = searchBar
+        searchBar.rx.text.throttle(2.0, scheduler: MainScheduler.instance).subscribe { [weak self] (event) in
+            guard let assuredSelf = self, let element = event.element else { return }
+            assuredSelf.eventHandler?.feedWithPosts(.Api, blogName: element).bindTo(assuredSelf.posts).addDisposableTo(assuredSelf.disposeBag)
+        }.addDisposableTo(disposeBag)
+    }
+    
     private func bindPostsToTableView() {
         posts.asObservable()
               .flatMap { Observable.just( $0.map { SectionOfPostData(header: $0.id, items: [$0]) } ) }

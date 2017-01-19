@@ -42,9 +42,9 @@ class PostsListInteractor {
 
 extension PostsListInteractor: PostsListInteractorInput {
 
-    func getAllPosts(_ source: Source) -> Observable<[Post]> {
+    func getAllPosts(_ source: Source, blogName: String?) -> Observable<[Post]> {
         guard let dataStore = dataStore, let postInteractorOutput = postInteractorOutput else { return Observable.empty() }
-        let apiPosts = dataStore.getAllPosts().flatMap { self.plainPostsFromApiPosts($0) }
+        let apiPosts = dataStore.getAllPosts(blogName).flatMap { self.plainPostsFromApiPosts($0) }
         let databasePosts = dataStore.fetchAllPosts().flatMap { self.plainPostsFromDatabasePosts($0) }
         return postInteractorOutput.presentData(databasePosts, apiPosts: apiPosts, source: source)
     }

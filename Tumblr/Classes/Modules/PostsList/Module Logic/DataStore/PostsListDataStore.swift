@@ -32,9 +32,9 @@ class PostsListDataStore {
 
 extension PostsListDataStore: PostsListNetworkInterface {
 
-    func getAllPosts() -> Observable<[ApiPost]> {
-        guard let apiManager = apiManager else { return Observable.empty() }
-        return apiManager.requestPosts(endpoint: Endpoint.getAllPosts("thetimeandspaceblog"))
+    func getAllPosts(_ blogName: String?) -> Observable<[ApiPost]> {
+        guard let apiManager = apiManager, let blog = blogName else { return Observable.empty() }
+        return apiManager.requestPosts(endpoint: Endpoint.getAllPosts(blog))
     }
     
     func cacheImage(forImageView imageView: UIImageView, withPath path: String, forPostEntity post: Post) -> URLSessionDataTask? {

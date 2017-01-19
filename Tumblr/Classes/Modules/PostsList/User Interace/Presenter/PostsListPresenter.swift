@@ -25,9 +25,9 @@ class PostsListPresenter {
 
 extension PostsListPresenter: PostsListModuleInterface {
 
-    func feedWithPosts(_ source: Source) -> Observable<[Post]> {
+    func feedWithPosts(_ source: Source, blogName: String?) -> Observable<[Post]> {
         guard let postsListInteractor = postsListInteractor else { return Observable.empty() }
-        return postsListInteractor.getAllPosts(source)
+        return postsListInteractor.getAllPosts(source, blogName: blogName)
     }
     
     func updateImageView(_ imagePath: String, imageView: UIImageView, forPostEntity post: Post) -> URLSessionDataTask? {
@@ -46,7 +46,10 @@ extension PostsListPresenter: PostsListInteractorOutput {
         
         switch source {
             case .Api:
-                return apiPosts
+                return apiPosts.flatMap({ (posts) -> Observable<[Post]> in
+                    let photoPosts = posts.filter { $0.type == "photo" }
+                    return Observable.just(photoPosts)
+                })
             case .Database:
                 return databasePosts
             case .Both:

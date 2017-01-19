@@ -11,7 +11,7 @@ import RxSwift
 
 protocol PostsListInteractorInput {
 
-    func getAllPosts(_ source: Source) -> Observable<[Post]>
+    func getAllPosts(_ source: Source, blogName: String?) -> Observable<[Post]>
     func cacheImage(forImageView imageView: UIImageView, withPath path: String, forPostEntity post: Post) -> URLSessionDataTask?
     func cachePosts(_ posts: [Post])
     
