@@ -12,7 +12,7 @@ import SnapKit
 class PostsListTableViewCell: UITableViewCell {
     
     private let blogDetailsContainer = PostsListTableViewCell.createContainerView()
-    private let captionContainer = PostsListTableViewCell.createContainerView()
+    //private let captionContainer = PostsListTableViewCell.createContainerView()
     
     private let posterImageView: UIImageView = {
         let posterImageView = UIImageView(frame: .zero)
@@ -44,7 +44,7 @@ class PostsListTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubviews()
         setLayout()
-        contentView.backgroundColor = UIColor.green
+        contentView.backgroundColor = UIColor.white
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -76,7 +76,7 @@ class PostsListTableViewCell: UITableViewCell {
     private func addSubviews() {
         contentView.addSubview(blogDetailsContainer)
         contentView.addSubview(posterImageView)
-        contentView.addSubview(captionContainer)
+       // contentView.addSubview(captionContainer)
         blogDetailsContainer.addSubview(blogNameLabel)
     }
     
@@ -93,16 +93,10 @@ class PostsListTableViewCell: UITableViewCell {
             $0.top.centerYWithinMargins.equalTo(0)
         }
         
-        captionContainer.snp.makeConstraints {
-            $0.bottom.equalTo(0)
-            $0.left.equalTo(0)
-            $0.right.equalTo(0)
-            $0.height.equalTo(125)
-        }
         
         posterImageView.snp.makeConstraints {
             $0.top.equalTo(blogDetailsContainer.snp.bottom)
-            $0.bottom.equalTo(captionContainer.snp.top)
+            $0.bottom.equalTo(0)
             $0.left.equalTo(0)
             $0.right.equalTo(0)
         }

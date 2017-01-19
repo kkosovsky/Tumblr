@@ -112,4 +112,8 @@ extension PostsListViewController: UITableViewDelegate {
         return view
     }
     
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchBar.resignFirstResponder()
+    }
+    
 }
