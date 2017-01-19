@@ -35,8 +35,9 @@ class PostsListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        DatabaseManager().clearDatabase()
         postsListView.postsTableView.delegate = self
-        eventHandler?.feedWithPosts(.Both).bindTo(posts).addDisposableTo(disposeBag)
+        eventHandler?.feedWithPosts(.Api).bindTo(posts).addDisposableTo(disposeBag)
         postsListView.postsTableView.register(PostsListTableViewCell.self)
         configureDataSource()
         bindPostsToTableView()

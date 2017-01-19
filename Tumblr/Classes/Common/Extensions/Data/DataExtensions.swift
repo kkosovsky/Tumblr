@@ -9,6 +9,7 @@
 import Foundation
 import RxCocoa
 import RxSwift
+import Mapper
 
 extension Data {
     
@@ -17,10 +18,10 @@ extension Data {
             guard let apiStringUtf8 = String(data: self, encoding: .utf8) else { return Observable.empty() }
             let jsonString = apiStringUtf8.formatThumblrApiObjectToJson()
             guard let jsonAsData = jsonString.data(using: .utf8),
-                  let json = try JSONSerialization.jsonObject(with: jsonAsData, options: .allowFragments) as? [String: AnyObject],
-                  let postsArray = json["posts"] as? [AnyObject] else { return Observable.empty() }
-            let posts = try [ApiPost].decode(postsArray)
-            return Observable.just(posts)
+            let json = try JSONSerialization.jsonObject(with: jsonAsData, options: .allowFragments) as? [String: AnyObject],
+            let postsArray = json["posts"] as? [[String: AnyObject]] else { return Observable.empty() }
+            let apiPosts = postsArray.map { ApiPost.from($0 as NSDictionary) }.filter { $0 != nil }.flatMap{ $0! }
+            return Observable.just(apiPosts)
         } catch {
             print(error)
         }

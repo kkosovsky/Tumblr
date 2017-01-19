@@ -7,37 +7,31 @@
 //
 
 import Foundation
-import Decodable
+import Mapper
 
-
-struct ApiPost {
+struct ApiPost: Mappable {
     
-    var id: String
-    var url: String
-    var type: String
-    var date: String
+    let id: String
+    let url: String
+    let type: String
+    let date: String
     var photo1280: String?
     var photo500: String?
     var photo400: String?
     var photo100: String?
     var photoCaption: String?
     var tags: [String]?
-}
 
-extension ApiPost: Decodable {
-    
-    static func decode(_ json: Any) throws -> ApiPost {
-        return try ApiPost(
-            id: json => "id",
-            url: json => "url",
-            type: json => "type",
-            date: json => "date",
-            photo1280: json =>? "photo-url-1280",
-            photo500: json =>? "photo-url-500",
-            photo400: json =>? "photo-url-400",
-            photo100: json =>? "photo-url-100",
-            photoCaption: json =>? "photo-caption",
-            tags: json =>? "tags"
-        )
+    init(map: Mapper) throws {
+        try id = map.from("id")
+        try url = map.from("url")
+        try type = map.from("type")
+        try date = map.from("date")
+        photo1280 = map.optionalFrom("photo-url-1280")
+        photo500 = map.optionalFrom("photo-url-500")
+        photo400 = map.optionalFrom("photo-url-400")
+        photo100 = map.optionalFrom("photo-url-100")
+        photoCaption = map.optionalFrom("photo-caption")
+        tags = map.optionalFrom("tags")
     }
 }

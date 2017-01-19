@@ -43,6 +43,7 @@ extension PostsListPresenter: PostsListModuleInterface {
 extension PostsListPresenter: PostsListInteractorOutput {
     
     func presentData(_ databasePosts: Observable<[Post]>, apiPosts: Observable<[Post]>, source: Source) -> Observable<[Post]> {
+        
         switch source {
             case .Api:
                 return apiPosts

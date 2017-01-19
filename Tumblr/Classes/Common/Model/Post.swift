@@ -39,6 +39,8 @@ class Post {
         date = databasePost.date
         largePhotoPath = databasePost.largePhotoPath
         smalllPhotoPath = databasePost.smallPhotoPath
+        smallPhoto = databasePost.smallPhoto
+        largePhoto = databasePost.largePhoto
         photoCaption = databasePost.photoCaption
         tags = databasePost.tags.map{ $0.tagName }
     }
@@ -59,6 +61,20 @@ class Post {
         } else {
             return Int(arc4random())
         }
+    }
+    
+}
+
+extension Post: Hashable {
+    
+    var hashValue: Int {
+        get {
+            return self.id.hashValue
+        }
+    }
+    
+    public static func ==(lhs: Post, rhs: Post) -> Bool {
+        return lhs.hashValue == rhs.hashValue
     }
     
 }

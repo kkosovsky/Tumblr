@@ -19,6 +19,7 @@ class PostsListTableViewCell: UITableViewCell {
         posterImageView.image = UIImage(named: "Blur_placeholder")
         posterImageView.isUserInteractionEnabled = true
         posterImageView.contentMode = .scaleAspectFill
+        posterImageView.clipsToBounds = true
         return posterImageView
     }()
     
@@ -69,7 +70,7 @@ class PostsListTableViewCell: UITableViewCell {
         super.prepareForReuse()
         self.task?.cancel()
         self.task = nil
-        posterImageView.image = UIImage(named: "Blur_placeholder")
+        posterImageView.image = nil
     }
     
     private func addSubviews() {
@@ -109,15 +110,13 @@ class PostsListTableViewCell: UITableViewCell {
     }
     
     func setup(withItem item: Post, eventHandler: PostsListModuleInterface?) {
-        guard let photoPath = item.smalllPhotoPath else { return }
         blogNameLabel.text = item.date
-        print("small photo: ", item.smallPhoto)
         if let imageData = item.smallPhoto {
             posterImageView.image = UIImage(data: imageData)
         } else {
+             guard let photoPath = item.smalllPhotoPath else { print("wrong guard: ", item.type); return }
              task = eventHandler?.updateImageView(photoPath, imageView: posterImageView, forPostEntity: item)
         }
-       
     }
     
 }
