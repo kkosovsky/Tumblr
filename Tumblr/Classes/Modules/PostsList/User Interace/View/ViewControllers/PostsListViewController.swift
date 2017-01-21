@@ -43,7 +43,7 @@ class PostsListViewController: UIViewController {
         super.viewDidLoad()
         DatabaseManager().clearDatabase()
         postsListView.postsTableView.delegate = self
-        postsListView.postsTableView.register(PostsListTableViewCell.self)
+        postsListView.postsTableView.register(PostsListPhotoTableViewCell.self)
         configureDataSource()
         bindPostsToTableView()
         subscribePosts()
@@ -61,7 +61,7 @@ class PostsListViewController: UIViewController {
     private func configureDataSource() {
         dataSource.configureCell = { [weak self] dataSource, tableView, indexPath, item in
         guard let unwrappedSelf = self else { return UITableViewCell() }
-        let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as PostsListTableViewCell
+        let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as PostsListPhotoTableViewCell
         cell.setup(withItem: item, eventHandler: unwrappedSelf.eventHandler)
         return cell
         }

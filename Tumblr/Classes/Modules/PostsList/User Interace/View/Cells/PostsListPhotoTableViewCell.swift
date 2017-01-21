@@ -10,10 +10,10 @@ import UIKit
 import SnapKit
 import RxSwift
 
-class PostsListTableViewCell: UITableViewCell {
+class PostsListPhotoTableViewCell: UITableViewCell {
     
-    private let titleContainer = PostsListTableViewCell.createContainerView()
-    private let captionContainer = PostsListTableViewCell.createContainerView()
+    private let titleContainer = PostsListPhotoTableViewCell.createContainerView()
+    private let captionContainer = PostsListPhotoTableViewCell.createContainerView()
     private let disposeBag = DisposeBag()
     
     fileprivate let posterImageView: UIImageView = {
