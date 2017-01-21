@@ -46,7 +46,6 @@ extension PostsListPresenter: PostsListInteractorOutput {
         switch source {
             case .Api:
                 return apiPosts.flatMap({ (posts) -> Observable<[Post]> in
-                    posts.forEach { print($0.type) }
                     return Observable.just(posts)
                 })
             case .Database:

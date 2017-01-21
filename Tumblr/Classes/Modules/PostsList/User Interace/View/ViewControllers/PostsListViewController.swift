@@ -50,7 +50,6 @@ class PostsListViewController: UIViewController {
         addSearchBar()
         postsListView.postsTableView.estimatedRowHeight = 400
         postsListView.postsTableView.rowHeight = UITableViewAutomaticDimension
-        
     }
     
     private func subscribePosts() {
@@ -113,5 +112,5 @@ extension PostsListViewController: UITableViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         searchBar.resignFirstResponder()
     }
-    
+   
 }
