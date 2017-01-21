@@ -43,12 +43,11 @@ extension PostsListPresenter: PostsListModuleInterface {
 extension PostsListPresenter: PostsListInteractorOutput {
     
     func presentData(_ databasePosts: Observable<[Post]>, apiPosts: Observable<[Post]>, source: Source) -> Observable<[Post]> {
-        
         switch source {
             case .Api:
                 return apiPosts.flatMap({ (posts) -> Observable<[Post]> in
-                    let photoPosts = posts.filter { $0.type == "photo" }
-                    return Observable.just(photoPosts)
+                    posts.forEach { print($0.type) }
+                    return Observable.just(posts)
                 })
             case .Database:
                 return databasePosts

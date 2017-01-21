@@ -6,7 +6,7 @@
 //  Copyright © 2017 Kamil Kosowski. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Post {
 
@@ -20,6 +20,7 @@ class Post {
     var smallPhoto: Data?
     var photoCaption: String?
     var tags: [String]?
+    //var smallImage: UIImage?
     
     init(_ apiPost: ApiPost) {
         id = Post.idFromApiPost(apiPost.id)
@@ -51,7 +52,7 @@ class Post {
     }
     
     private func findThumbnailPhotoPath(_ apiPost: ApiPost) -> String? {
-        let photoPath = apiPost.photo400 != nil ? apiPost.photo400 : apiPost.photo100 != nil ? apiPost.photo100 : nil
+        let photoPath = apiPost.photo400 != nil ? apiPost.photo400 : nil //apiPost.photo100 != nil ? apiPost.photo100 : nil
         return photoPath
     }
     

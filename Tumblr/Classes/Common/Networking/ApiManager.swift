@@ -21,17 +21,36 @@ class ApiManager {
             .shareReplay(1)
     }
     
-    func fetchImage(_ imageView: UIImageView, imagePath: String, completion: @escaping (_ data: Data) -> Void) -> URLSessionDataTask? {
+    func fetchImage(_ imageView: UIImageView, imagePath: String, post: Post, completion: @escaping (_ data: Data) -> Void) -> URLSessionDataTask? {
         guard let url = URL(string: imagePath) else { return nil }
         return URLSession(configuration: .ephemeral).dataTask(with: url) { data, response, error in
             guard let myData = data else { return }
-            //user.pictureThumbnail = myData
+            guard let image = UIImage(data: myData) else { return }
+            
             DispatchQueue.main.async {
-                imageView.image = UIImage(data:myData)
+                print("API: ImageView height before update: ", imageView.frame.size.height)
+                print("API: new image size: ", image.size.height)
+                UIView.animate(withDuration: 0.1, animations: { 
+                    imageView.snp.updateConstraints {
+                        $0.height.equalTo(image.size.height)
+                    }
+                })
+                imageView.image = image
+                print("API: ImageView after update: ", imageView.frame.size.height)
+                
+                post.smallPhoto = myData
                 completion(myData)
             }
         }
 
+    }
+    
+    func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
+        image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
+        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return newImage
     }
     
 }

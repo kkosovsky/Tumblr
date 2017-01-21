@@ -43,12 +43,14 @@ class PostsListViewController: UIViewController {
         super.viewDidLoad()
         DatabaseManager().clearDatabase()
         postsListView.postsTableView.delegate = self
-        
         postsListView.postsTableView.register(PostsListTableViewCell.self)
         configureDataSource()
         bindPostsToTableView()
         subscribePosts()
         addSearchBar()
+        postsListView.postsTableView.estimatedRowHeight = 400
+        postsListView.postsTableView.rowHeight = UITableViewAutomaticDimension
+        
     }
     
     private func subscribePosts() {
@@ -59,13 +61,13 @@ class PostsListViewController: UIViewController {
     
     private func configureDataSource() {
         dataSource.configureCell = { [weak self] dataSource, tableView, indexPath, item in
-            guard let unwrappedSelf = self else { return UITableViewCell() }
-            let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as PostsListTableViewCell
-            cell.setup(withItem: item, eventHandler: unwrappedSelf.eventHandler)
-            return cell
+        guard let unwrappedSelf = self else { return UITableViewCell() }
+        let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as PostsListTableViewCell
+        cell.setup(withItem: item, eventHandler: unwrappedSelf.eventHandler)
+        return cell
         }
     }
-
+    
     private func addSearchBar() {
         navigationItem.titleView = searchBar
         searchBar.rx.text.throttle(2.0, scheduler: MainScheduler.instance).subscribe { [weak self] (event) in
@@ -83,11 +85,7 @@ class PostsListViewController: UIViewController {
 }
 
 extension PostsListViewController: UITableViewDelegate {
- 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 550
-    }
-    
+
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 25
     }
