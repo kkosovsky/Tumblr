@@ -10,4 +10,8 @@ import Foundation
 
 class FavouritesWireframe {
     
+    var favouritesPresenter: FavouritesPresenter?
+    var favouritesController: FavouritesViewController?
+    var rootWireframe: RootWireframe?
+    
 }

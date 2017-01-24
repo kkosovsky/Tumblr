@@ -7,7 +7,11 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol FavouritesModuleInterface {
+    
+    func sortUsers(by index: Int)
+    func fetchFavouritePosts(_ source: Source) -> Observable<[Post]>
     
 }

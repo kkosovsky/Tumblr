@@ -68,7 +68,7 @@ class PostsListViewController: UIViewController {
     
     private func addSearchBar() {
         navigationItem.titleView = searchBar
-        searchBar.rx.text.throttle(2.0, scheduler: MainScheduler.instance).subscribe { [weak self] (event) in
+        searchBar.rx.text.throttle(1.0, scheduler: MainScheduler.instance).subscribe { [weak self] (event) in
             guard let assuredSelf = self, let element = event.element else { return }
             assuredSelf.eventHandler?.feedWithPosts(.Api, blogName: element).bindTo(assuredSelf.posts).addDisposableTo(assuredSelf.disposeBag)
         }.addDisposableTo(disposeBag)

@@ -37,14 +37,20 @@ class FavouritesViewController: UIViewController {
         super.viewDidLoad()
         favouritesView.favouritesTableView.delegate = self
         favouritesView.favouritesTableView.register(PostsListPhotoTableViewCell.self)
+        
         configureDataSource()
         bindPostsToTableView()
         addUISegmentedControl()
     }
     
+    private func fetchPosts() {
+        eventHandler?.fetchFavouritePosts(.Database)
+                     .bindTo(posts)
+                     .addDisposableTo(disposeBag)
+    }
+    
     private func configureDataSource() {
-        dataSource.configureCell = { [weak self] dataSource, tableView, indexPath, item in
-            guard let unwrappedSelf = self else { return UITableViewCell() }
+        dataSource.configureCell = { dataSource, tableView, indexPath, item in
             let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as FavouritesTableViewCell
             cell.setup(withItem: item)
             return cell
@@ -59,11 +65,11 @@ class FavouritesViewController: UIViewController {
     }
     
     private func addUISegmentedControl() {
-        let segmentedControl = UISegmentedControl(items: ["Post Id", "Post Type"])
+        let segmentedControl = UISegmentedControl(items: ["Post Data", "Post Type"])
         segmentedControl.selectedSegmentIndex = 0
         navigationItem.titleView = segmentedControl
         segmentedControl.rx.controlEvent(.valueChanged).subscribe(onNext: { [weak self] in
-            //self?.eventHandler?.sortUsers(segmentedControl.selectedSegmentIndex)
+            self?.eventHandler?.sortUsers(by: segmentedControl.selectedSegmentIndex)
         }).addDisposableTo(disposeBag)
     }
 
