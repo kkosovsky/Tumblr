@@ -10,4 +10,9 @@ import UIKit
 
 class FavouritesTableViewCell: UITableViewCell {
 
+    
+    func setup(withItem item: Post) {
+        
+    }
+    
 }
