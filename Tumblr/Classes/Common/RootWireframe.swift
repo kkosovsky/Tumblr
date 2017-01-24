@@ -8,16 +8,41 @@
 
 import UIKit
 
-class RootWireframe {
+class RootWireframe: NSObject {
 
-    func show(_ viewController: UIViewController?, inWindow window: UIWindow) {
-        guard let initialViewController = viewController else { return }
-        window.rootViewController = instantiateNavigationController(withFirstViewController: initialViewController)
+    var viewControllers = [UIViewController]()
+    
+    func show(inWindow window: UIWindow) {
+        let navigationControllers = viewControllers.map { instantiateNavigationController(withFirstViewController: $0) }
+        let tabBarController = instantiateTabBarController(withNavigationControllers: navigationControllers)
+        guard let items = tabBarController.tabBar.items else { return }
+        items[0].title = "Posts"
+        window.rootViewController = tabBarController
     }
-
+    
+    func appendToWireframe(_ viewController: UIViewController?) {
+        guard let viewController = viewController else { return }
+        viewControllers.append(viewController)
+    }
+    
     private func instantiateNavigationController(withFirstViewController viewController: UIViewController) -> UINavigationController {
         let navigationController = UINavigationController()
         navigationController.viewControllers = [viewController]
         return navigationController
     }
+    
+    private func instantiateTabBarController(withNavigationControllers navigationControllers: [UINavigationController]) -> UITabBarController {
+        let tabBarController = UITabBarController(nibName: nil, bundle: nil)
+        tabBarController.viewControllers = navigationControllers
+        tabBarController.delegate = self
+        return tabBarController
+    }
+}
+
+extension RootWireframe: UITabBarControllerDelegate {
+   
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        // TODO: next scene
+    }
+    
 }

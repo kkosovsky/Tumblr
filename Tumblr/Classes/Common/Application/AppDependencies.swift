@@ -12,7 +12,7 @@ import UIKit
 class AppDependencies {
     
     var postsListWireframe = PostsListWireframe()
-    
+   
     init(forAppDelegate appDelegate: AppDelegate) {
         appDelegate.window = UIWindow(frame: UIScreen.main.bounds)
         appDelegate.window?.makeKeyAndVisible()
@@ -25,6 +25,7 @@ class AppDependencies {
     }
     
      private func configureDependencies() {
+        
         let rootWireframe = RootWireframe()
         
         let postsListPresenter = PostsListPresenter()
@@ -35,6 +36,7 @@ class AppDependencies {
         postsListWireframe.postsListPresenter = postsListPresenter
         postsListPresenter.postsListInteractor = postsListInteractor
         
+        postsListWireframe.initializeInterface()
         
     }
     
