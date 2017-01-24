@@ -7,18 +7,78 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6ABA35691E26911D005D9EF0 /* PostsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA35681E26911D005D9EF0 /* PostsListView.swift */; };
+		6ABA356F1E2692CB005D9EF0 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA356D1E2692CB005D9EF0 /* ReusableView.swift */; };
+		6ABA35701E2692CB005D9EF0 /* UITableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA356E1E2692CB005D9EF0 /* UITableViewExtensions.swift */; };
+		6ABA35751E269387005D9EF0 /* UITableViewCellExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA35721E269387005D9EF0 /* UITableViewCellExtensions.swift */; };
+		6ABA35761E269387005D9EF0 /* URLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA35741E269387005D9EF0 /* URLExtensions.swift */; };
+		6ABA35781E26944B005D9EF0 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA35771E26944B005D9EF0 /* Endpoint.swift */; };
+		6ABA357C1E269DAC005D9EF0 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA357B1E269DAC005D9EF0 /* ApiManager.swift */; };
+		6ABA357E1E269DBD005D9EF0 /* ApiPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA357D1E269DBD005D9EF0 /* ApiPost.swift */; };
+		6ABA35811E269E97005D9EF0 /* Reactive+URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA35801E269E97005D9EF0 /* Reactive+URLSession.swift */; };
+		6ABA35841E269F47005D9EF0 /* DataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA35831E269F47005D9EF0 /* DataExtensions.swift */; };
+		6ABD2EAE1E2AF2DA00CF816D /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD2EAD1E2AF2DA00CF816D /* StringExtensions.swift */; };
+		6ABD2EB01E2BADFC00CF816D /* PostsListPhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD2EAF1E2BADFC00CF816D /* PostsListPhotoTableViewCell.swift */; };
+		6ABD2EB21E2BB7FC00CF816D /* PostsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD2EB11E2BB7FC00CF816D /* PostsListPresenter.swift */; };
+		6ABD2EB41E2BB82D00CF816D /* PostsListModuleInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD2EB31E2BB82D00CF816D /* PostsListModuleInterface.swift */; };
+		6ABD2EB61E2BB8BE00CF816D /* PostsListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD2EB51E2BB8BE00CF816D /* PostsListInteractor.swift */; };
+		6ABD2EB81E2BB9C500CF816D /* PostsListInteractorIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD2EB71E2BB9C500CF816D /* PostsListInteractorIO.swift */; };
+		6ABD2EBA1E2BC39F00CF816D /* PostsListDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD2EB91E2BC39F00CF816D /* PostsListDataStore.swift */; };
+		6ABD2EC01E2BD72D00CF816D /* SectionOfPostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD2EBF1E2BD72D00CF816D /* SectionOfPostData.swift */; };
+		6ABD2EC31E2BEDA800CF816D /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD2EC21E2BEDA800CF816D /* UIColorExtensions.swift */; };
+		6ABD2EC61E2C060B00CF816D /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD2EC51E2C060B00CF816D /* DatabaseManager.swift */; };
+		6ABD2EC91E2C06DB00CF816D /* DatabasePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD2EC81E2C06DB00CF816D /* DatabasePost.swift */; };
+		6ABD2ECB1E2C149200CF816D /* PostsListNetworkInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD2ECA1E2C149200CF816D /* PostsListNetworkInterface.swift */; };
+		6ABD2ECD1E2C1FBC00CF816D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD2ECC1E2C1FBC00CF816D /* Post.swift */; };
+		6ABD2ECF1E2C29CA00CF816D /* PostsListDatabaseInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD2ECE1E2C29CA00CF816D /* PostsListDatabaseInterface.swift */; };
 		6AFAB33E1E26845300C7FAE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AFAB33A1E26845300C7FAE0 /* Assets.xcassets */; };
 		6AFAB33F1E26845300C7FAE0 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6AFAB33C1E26845300C7FAE0 /* Info.plist */; };
 		6AFAB3411E2684D700C7FAE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AFAB3401E2684D700C7FAE0 /* LaunchScreen.storyboard */; };
 		6AFAB34A1E26850D00C7FAE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AFAB3451E26850D00C7FAE0 /* AppDelegate.swift */; };
+		6AFAB35C1E26899F00C7FAE0 /* RootWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AFAB35B1E26899F00C7FAE0 /* RootWireframe.swift */; };
+		6AFAB35E1E2689D400C7FAE0 /* AppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AFAB35D1E2689D400C7FAE0 /* AppDependencies.swift */; };
+		6AFAB3601E268A4B00C7FAE0 /* PostsListWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AFAB35F1E268A4B00C7FAE0 /* PostsListWireframe.swift */; };
+		6AFAB3621E268BAF00C7FAE0 /* PostsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AFAB3611E268BAF00C7FAE0 /* PostsListViewController.swift */; };
+		FD81BD5E9BABCE2E7308069B /* Pods_Tumblr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 466EBD84565AF417B5CC2DBD /* Pods_Tumblr.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		466EBD84565AF417B5CC2DBD /* Pods_Tumblr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tumblr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6ABA35681E26911D005D9EF0 /* PostsListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsListView.swift; sourceTree = "<group>"; };
+		6ABA356D1E2692CB005D9EF0 /* ReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
+		6ABA356E1E2692CB005D9EF0 /* UITableViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtensions.swift; sourceTree = "<group>"; };
+		6ABA35721E269387005D9EF0 /* UITableViewCellExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtensions.swift; sourceTree = "<group>"; };
+		6ABA35741E269387005D9EF0 /* URLExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
+		6ABA35771E26944B005D9EF0 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		6ABA357B1E269DAC005D9EF0 /* ApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		6ABA357D1E269DBD005D9EF0 /* ApiPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiPost.swift; sourceTree = "<group>"; };
+		6ABA35801E269E97005D9EF0 /* Reactive+URLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Reactive+URLSession.swift"; sourceTree = "<group>"; };
+		6ABA35831E269F47005D9EF0 /* DataExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataExtensions.swift; sourceTree = "<group>"; };
+		6ABD2EAD1E2AF2DA00CF816D /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		6ABD2EAF1E2BADFC00CF816D /* PostsListPhotoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsListPhotoTableViewCell.swift; sourceTree = "<group>"; };
+		6ABD2EB11E2BB7FC00CF816D /* PostsListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsListPresenter.swift; sourceTree = "<group>"; };
+		6ABD2EB31E2BB82D00CF816D /* PostsListModuleInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsListModuleInterface.swift; sourceTree = "<group>"; };
+		6ABD2EB51E2BB8BE00CF816D /* PostsListInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsListInteractor.swift; sourceTree = "<group>"; };
+		6ABD2EB71E2BB9C500CF816D /* PostsListInteractorIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsListInteractorIO.swift; sourceTree = "<group>"; };
+		6ABD2EB91E2BC39F00CF816D /* PostsListDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsListDataStore.swift; sourceTree = "<group>"; };
+		6ABD2EBF1E2BD72D00CF816D /* SectionOfPostData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionOfPostData.swift; sourceTree = "<group>"; };
+		6ABD2EC21E2BEDA800CF816D /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
+		6ABD2EC51E2C060B00CF816D /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		6ABD2EC81E2C06DB00CF816D /* DatabasePost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabasePost.swift; sourceTree = "<group>"; };
+		6ABD2ECA1E2C149200CF816D /* PostsListNetworkInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsListNetworkInterface.swift; sourceTree = "<group>"; };
+		6ABD2ECC1E2C1FBC00CF816D /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		6ABD2ECE1E2C29CA00CF816D /* PostsListDatabaseInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsListDatabaseInterface.swift; sourceTree = "<group>"; };
 		6AFAB31B1E2680E300C7FAE0 /* Tumblr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tumblr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AFAB33A1E26845300C7FAE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6AFAB33C1E26845300C7FAE0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6AFAB3401E2684D700C7FAE0 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Tumblr/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6AFAB3451E26850D00C7FAE0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6AFAB35B1E26899F00C7FAE0 /* RootWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootWireframe.swift; sourceTree = "<group>"; };
+		6AFAB35D1E2689D400C7FAE0 /* AppDependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDependencies.swift; sourceTree = "<group>"; };
+		6AFAB35F1E268A4B00C7FAE0 /* PostsListWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsListWireframe.swift; sourceTree = "<group>"; };
+		6AFAB3611E268BAF00C7FAE0 /* PostsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsListViewController.swift; sourceTree = "<group>"; };
+		A551CCAA202445D6482B6E49 /* Pods-Tumblr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tumblr.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tumblr/Pods-Tumblr.release.xcconfig"; sourceTree = "<group>"; };
+		CBB382AC94D700D2F49B3884 /* Pods-Tumblr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tumblr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tumblr/Pods-Tumblr.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,18 +86,127 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD81BD5E9BABCE2E7308069B /* Pods_Tumblr.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		666ED5EECA410550C24C22FD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				466EBD84565AF417B5CC2DBD /* Pods_Tumblr.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6ABA356A1E2692CB005D9EF0 /* UITableView */ = {
+			isa = PBXGroup;
+			children = (
+				6ABA356B1E2692CB005D9EF0 /* Components */,
+				6ABA356E1E2692CB005D9EF0 /* UITableViewExtensions.swift */,
+			);
+			path = UITableView;
+			sourceTree = "<group>";
+		};
+		6ABA356B1E2692CB005D9EF0 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				6ABA356C1E2692CB005D9EF0 /* Reusable */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		6ABA356C1E2692CB005D9EF0 /* Reusable */ = {
+			isa = PBXGroup;
+			children = (
+				6ABA356D1E2692CB005D9EF0 /* ReusableView.swift */,
+			);
+			path = Reusable;
+			sourceTree = "<group>";
+		};
+		6ABA35711E269387005D9EF0 /* UITableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				6ABA35721E269387005D9EF0 /* UITableViewCellExtensions.swift */,
+			);
+			path = UITableViewCell;
+			sourceTree = "<group>";
+		};
+		6ABA35731E269387005D9EF0 /* URL */ = {
+			isa = PBXGroup;
+			children = (
+				6ABA35741E269387005D9EF0 /* URLExtensions.swift */,
+			);
+			path = URL;
+			sourceTree = "<group>";
+		};
+		6ABA357F1E269E8C005D9EF0 /* Reactive */ = {
+			isa = PBXGroup;
+			children = (
+				6ABA35801E269E97005D9EF0 /* Reactive+URLSession.swift */,
+			);
+			path = Reactive;
+			sourceTree = "<group>";
+		};
+		6ABA35821E269F36005D9EF0 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				6ABA35831E269F47005D9EF0 /* DataExtensions.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		6ABD2EAC1E2AF2C700CF816D /* String */ = {
+			isa = PBXGroup;
+			children = (
+				6ABD2EAD1E2AF2DA00CF816D /* StringExtensions.swift */,
+			);
+			path = String;
+			sourceTree = "<group>";
+		};
+		6ABD2EBE1E2BD71100CF816D /* RxDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				6ABD2EBF1E2BD72D00CF816D /* SectionOfPostData.swift */,
+			);
+			path = RxDataSource;
+			sourceTree = "<group>";
+		};
+		6ABD2EC11E2BED9C00CF816D /* UIColor */ = {
+			isa = PBXGroup;
+			children = (
+				6ABD2EC21E2BEDA800CF816D /* UIColorExtensions.swift */,
+			);
+			path = UIColor;
+			sourceTree = "<group>";
+		};
+		6ABD2EC41E2C05EA00CF816D /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				6ABD2EC71E2C06C400CF816D /* Model */,
+				6ABD2EC51E2C060B00CF816D /* DatabaseManager.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		6ABD2EC71E2C06C400CF816D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6ABD2EC81E2C06DB00CF816D /* DatabasePost.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		6AFAB3121E2680E300C7FAE0 = {
 			isa = PBXGroup;
 			children = (
 				6AFAB31D1E2680E300C7FAE0 /* Tumblr */,
 				6AFAB3401E2684D700C7FAE0 /* LaunchScreen.storyboard */,
 				6AFAB31C1E2680E300C7FAE0 /* Products */,
+				89D141CDD94AFE3DB6D15D68 /* Pods */,
+				666ED5EECA410550C24C22FD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,9 +257,11 @@
 			isa = PBXGroup;
 			children = (
 				6AFAB3441E26850D00C7FAE0 /* Application */,
+				6ABD2EC41E2C05EA00CF816D /* Database */,
 				6AFAB3461E26850D00C7FAE0 /* Extensions */,
 				6AFAB3471E26850D00C7FAE0 /* Model */,
 				6AFAB3481E26850D00C7FAE0 /* Networking */,
+				6AFAB35B1E26899F00C7FAE0 /* RootWireframe.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -99,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				6AFAB3451E26850D00C7FAE0 /* AppDelegate.swift */,
+				6AFAB35D1E2689D400C7FAE0 /* AppDependencies.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -106,6 +278,13 @@
 		6AFAB3461E26850D00C7FAE0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				6ABD2EAC1E2AF2C700CF816D /* String */,
+				6ABA35821E269F36005D9EF0 /* Data */,
+				6ABA357F1E269E8C005D9EF0 /* Reactive */,
+				6ABA35711E269387005D9EF0 /* UITableViewCell */,
+				6ABD2EC11E2BED9C00CF816D /* UIColor */,
+				6ABA35731E269387005D9EF0 /* URL */,
+				6ABA356A1E2692CB005D9EF0 /* UITableView */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -113,6 +292,8 @@
 		6AFAB3471E26850D00C7FAE0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6ABD2EBE1E2BD71100CF816D /* RxDataSource */,
+				6ABD2ECC1E2C1FBC00CF816D /* Post.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -121,6 +302,8 @@
 			isa = PBXGroup;
 			children = (
 				6AFAB3581E26861C00C7FAE0 /* Model */,
+				6ABA35771E26944B005D9EF0 /* Endpoint.swift */,
+				6ABA357B1E269DAC005D9EF0 /* ApiManager.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -146,6 +329,7 @@
 		6AFAB34D1E2685D600C7FAE0 /* Module Interface */ = {
 			isa = PBXGroup;
 			children = (
+				6ABD2EB31E2BB82D00CF816D /* PostsListModuleInterface.swift */,
 			);
 			path = "Module Interface";
 			sourceTree = "<group>";
@@ -162,6 +346,9 @@
 		6AFAB34F1E2685D600C7FAE0 /* DataStore */ = {
 			isa = PBXGroup;
 			children = (
+				6ABD2ECA1E2C149200CF816D /* PostsListNetworkInterface.swift */,
+				6ABD2EB91E2BC39F00CF816D /* PostsListDataStore.swift */,
+				6ABD2ECE1E2C29CA00CF816D /* PostsListDatabaseInterface.swift */,
 			);
 			path = DataStore;
 			sourceTree = "<group>";
@@ -169,6 +356,8 @@
 		6AFAB3501E2685D600C7FAE0 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
+				6ABD2EB51E2BB8BE00CF816D /* PostsListInteractor.swift */,
+				6ABD2EB71E2BB9C500CF816D /* PostsListInteractorIO.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -186,6 +375,7 @@
 		6AFAB3521E2685D600C7FAE0 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				6ABD2EB11E2BB7FC00CF816D /* PostsListPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -203,6 +393,7 @@
 		6AFAB3541E2685D600C7FAE0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				6ABD2EAF1E2BADFC00CF816D /* PostsListPhotoTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -210,6 +401,7 @@
 		6AFAB3551E2685D600C7FAE0 /* UIView */ = {
 			isa = PBXGroup;
 			children = (
+				6ABA35681E26911D005D9EF0 /* PostsListView.swift */,
 			);
 			path = UIView;
 			sourceTree = "<group>";
@@ -217,6 +409,7 @@
 		6AFAB3561E2685D600C7FAE0 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				6AFAB3611E268BAF00C7FAE0 /* PostsListViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -224,6 +417,7 @@
 		6AFAB3571E2685D600C7FAE0 /* Wireframe */ = {
 			isa = PBXGroup;
 			children = (
+				6AFAB35F1E268A4B00C7FAE0 /* PostsListWireframe.swift */,
 			);
 			path = Wireframe;
 			sourceTree = "<group>";
@@ -231,8 +425,18 @@
 		6AFAB3581E26861C00C7FAE0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6ABA357D1E269DBD005D9EF0 /* ApiPost.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		89D141CDD94AFE3DB6D15D68 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CBB382AC94D700D2F49B3884 /* Pods-Tumblr.debug.xcconfig */,
+				A551CCAA202445D6482B6E49 /* Pods-Tumblr.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,9 +446,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6AFAB32D1E2680E300C7FAE0 /* Build configuration list for PBXNativeTarget "Tumblr" */;
 			buildPhases = (
+				13B248D38887E688C1D3DD7F /* [CP] Check Pods Manifest.lock */,
 				6AFAB3171E2680E300C7FAE0 /* Sources */,
 				6AFAB3181E2680E300C7FAE0 /* Frameworks */,
 				6AFAB3191E2680E300C7FAE0 /* Resources */,
+				C91E375581C4FCC54CE82012 /* [CP] Embed Pods Frameworks */,
+				A70A5EF9C896606A570A99CE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -303,12 +510,88 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		13B248D38887E688C1D3DD7F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A70A5EF9C896606A570A99CE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tumblr/Pods-Tumblr-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C91E375581C4FCC54CE82012 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tumblr/Pods-Tumblr-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		6AFAB3171E2680E300C7FAE0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6ABD2ECB1E2C149200CF816D /* PostsListNetworkInterface.swift in Sources */,
+				6ABD2EB61E2BB8BE00CF816D /* PostsListInteractor.swift in Sources */,
+				6AFAB35E1E2689D400C7FAE0 /* AppDependencies.swift in Sources */,
+				6ABD2EC61E2C060B00CF816D /* DatabaseManager.swift in Sources */,
+				6AFAB35C1E26899F00C7FAE0 /* RootWireframe.swift in Sources */,
+				6ABD2EB01E2BADFC00CF816D /* PostsListPhotoTableViewCell.swift in Sources */,
+				6ABA35751E269387005D9EF0 /* UITableViewCellExtensions.swift in Sources */,
+				6ABA35691E26911D005D9EF0 /* PostsListView.swift in Sources */,
+				6ABD2EB81E2BB9C500CF816D /* PostsListInteractorIO.swift in Sources */,
+				6ABA357E1E269DBD005D9EF0 /* ApiPost.swift in Sources */,
+				6ABA357C1E269DAC005D9EF0 /* ApiManager.swift in Sources */,
+				6ABD2EC31E2BEDA800CF816D /* UIColorExtensions.swift in Sources */,
+				6AFAB3621E268BAF00C7FAE0 /* PostsListViewController.swift in Sources */,
+				6AFAB3601E268A4B00C7FAE0 /* PostsListWireframe.swift in Sources */,
+				6ABD2EAE1E2AF2DA00CF816D /* StringExtensions.swift in Sources */,
+				6ABD2EC01E2BD72D00CF816D /* SectionOfPostData.swift in Sources */,
+				6ABA35841E269F47005D9EF0 /* DataExtensions.swift in Sources */,
+				6ABD2EB41E2BB82D00CF816D /* PostsListModuleInterface.swift in Sources */,
+				6ABD2EC91E2C06DB00CF816D /* DatabasePost.swift in Sources */,
+				6ABD2ECD1E2C1FBC00CF816D /* Post.swift in Sources */,
+				6ABA356F1E2692CB005D9EF0 /* ReusableView.swift in Sources */,
+				6ABA35811E269E97005D9EF0 /* Reactive+URLSession.swift in Sources */,
+				6ABA35761E269387005D9EF0 /* URLExtensions.swift in Sources */,
+				6ABD2EB21E2BB7FC00CF816D /* PostsListPresenter.swift in Sources */,
 				6AFAB34A1E26850D00C7FAE0 /* AppDelegate.swift in Sources */,
+				6ABD2EBA1E2BC39F00CF816D /* PostsListDataStore.swift in Sources */,
+				6ABA35781E26944B005D9EF0 /* Endpoint.swift in Sources */,
+				6ABA35701E2692CB005D9EF0 /* UITableViewExtensions.swift in Sources */,
+				6ABD2ECF1E2C29CA00CF816D /* PostsListDatabaseInterface.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +693,7 @@
 		};
 		6AFAB32E1E2680E300C7FAE0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CBB382AC94D700D2F49B3884 /* Pods-Tumblr.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2TZ4M3EY3H;
@@ -423,6 +707,7 @@
 		};
 		6AFAB32F1E2680E300C7FAE0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A551CCAA202445D6482B6E49 /* Pods-Tumblr.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2TZ4M3EY3H;
@@ -453,6 +738,7 @@
 				6AFAB32F1E2680E300C7FAE0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

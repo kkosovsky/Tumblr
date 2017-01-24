@@ -12,9 +12,12 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var appDependencies: AppDependencies?
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        appDependencies = AppDependencies(forAppDelegate: self)
+        appDependencies?.installRootViewController(inWindow: window)
         return true
     }
 
