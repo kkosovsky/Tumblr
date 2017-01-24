@@ -6,7 +6,9 @@
 //  Copyright © 2017 Kamil Kosowski. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import RxSwift
+import RxCocoa
 
 class Post {
 
@@ -20,7 +22,7 @@ class Post {
     var smallPhoto: Data?
     var photoCaption: String?
     var tags: [String]?
-    //var smallImage: UIImage?
+    var isFavourite = false
     
     init(_ apiPost: ApiPost) {
         id = Post.idFromApiPost(apiPost.id)
@@ -52,7 +54,7 @@ class Post {
     }
     
     private func findThumbnailPhotoPath(_ apiPost: ApiPost) -> String? {
-        let photoPath = apiPost.photo400 != nil ? apiPost.photo400 : nil //apiPost.photo100 != nil ? apiPost.photo100 : nil
+        let photoPath = apiPost.photo400 != nil ? apiPost.photo400 : nil
         return photoPath
     }
     
@@ -76,6 +78,24 @@ extension Post: Hashable {
     
     public static func ==(lhs: Post, rhs: Post) -> Bool {
         return lhs.hashValue == rhs.hashValue
+    }
+    
+}
+
+extension Post: ReactiveCompatible {}
+
+extension Reactive where Base: Post {
+    
+    var imageObserver: AnyObserver<()>{
+        return AnyObserver{ [weak base] in
+            guard case .next = $0 else { return }
+            guard let unwrappedBase = base else { return }
+            base?.isFavourite = !unwrappedBase.isFavourite
+        }
+    }
+    
+    var isFavouriteObservable: Observable<Bool> {
+        return Observable.just(base.isFavourite)
     }
     
 }

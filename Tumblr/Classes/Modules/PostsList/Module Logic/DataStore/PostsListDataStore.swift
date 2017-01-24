@@ -39,7 +39,6 @@ extension PostsListDataStore: PostsListNetworkInterface {
     
     func cacheImage(forImageView imageView: UIImageView, withPath path: String, forPostEntity post: Post) -> URLSessionDataTask? {
         return apiManager?.fetchImage(imageView, imagePath: path, post: post) { [weak self] data in
-            post.smallPhoto = data
             self?.databaseManager?.cacheImage(data, withId: post.id)
         }
     }
@@ -55,6 +54,10 @@ extension PostsListDataStore: PostsListDatabaseInterface {
     func fetchAllPosts() -> Observable<[DatabasePost]> {
         guard let databaseManager = databaseManager else { return Observable.empty() }
         return databaseManager.fetchAll()
+    }
+    
+    func setPostFavourite(postId id: Int, isFavourite: Bool) {
+        databaseManager?.setPostFavourite(postId: id, isFavourite: isFavourite)
     }
     
 }

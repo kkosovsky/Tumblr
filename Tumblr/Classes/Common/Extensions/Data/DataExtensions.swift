@@ -17,6 +17,7 @@ extension Data {
         do {
             guard let apiStringUtf8 = String(data: self, encoding: .utf8) else { return Observable.empty() }
             let jsonString = apiStringUtf8.formatThumblrApiObjectToJson()
+            print("@@@@", jsonString)
             guard let jsonAsData = jsonString.data(using: .utf8),
             let json = try JSONSerialization.jsonObject(with: jsonAsData, options: .allowFragments) as? [String: AnyObject],
             let postsArray = json["posts"] as? [[String: AnyObject]] else { return Observable.empty() }

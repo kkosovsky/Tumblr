@@ -29,8 +29,15 @@ class DatabaseManager {
         }
     }
     
+    func setPostFavourite(postId id: Int, isFavourite: Bool) {
+        let post = realm.objects(DatabasePost.self).filter("id == %@", id).first
+        try! realm.write {
+            post?.isFavourite = isFavourite
+        }
+    }
+    
     func printAllPosts() {
-        print(realm.objects(DatabasePost.self).count)
+        print(realm.objects(DatabasePost.self).filter { $0.isFavourite == true} )
     }
     
     func cachePosts(_ posts: [DatabasePost]) {
@@ -58,11 +65,3 @@ class DatabaseManager {
     }
     
 }
-
-//func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
-//    UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
-//    image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
-//    let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-//    UIGraphicsEndImageContext()
-//    return newImage
-//}

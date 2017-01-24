@@ -29,9 +29,6 @@ class ApiManager {
             DispatchQueue.main.async {
                 imageView.image = image
                 post.smallPhoto = myData
-                UIView.animate(withDuration: 0.35) {
-                    imageView.alpha = 1
-                }
                 completion(myData)
             }
         }

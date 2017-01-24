@@ -15,6 +15,7 @@ class PostsListPhotoTableViewCell: UITableViewCell {
     private let titleContainer = PostsListPhotoTableViewCell.createContainerView()
     private let captionContainer = PostsListPhotoTableViewCell.createContainerView()
     private let disposeBag = DisposeBag()
+    var isFavourite = false
     
     fileprivate let posterImageView: UIImageView = {
         let posterImageView = UIImageView(frame: .zero)
@@ -31,7 +32,7 @@ class PostsListPhotoTableViewCell: UITableViewCell {
         return blogNameLabel
     }()
     
-    private let likeButton: UIButton = {
+    let likeButton: UIButton = {
         let likeButton = UIButton(frame: .zero)
         likeButton.setImage(UIImage(named:"heart_empty"), for: .normal)
         likeButton.contentMode = .scaleAspectFit
@@ -50,7 +51,6 @@ class PostsListPhotoTableViewCell: UITableViewCell {
         let captionLabel = UILabel(frame: .zero)
         captionLabel.font = UIFont.systemFont(ofSize: 14)
         captionLabel.adjustsFontSizeToFitWidth = true
-
         captionLabel.numberOfLines = 0
         return captionLabel
     }()
@@ -73,12 +73,14 @@ class PostsListPhotoTableViewCell: UITableViewCell {
         setLayout()
         self.backgroundColor = UIColor.clear
         selectionStyle = .none
-        likeButton.rx.tap.subscribe(onNext: {
-            UIView.animate(withDuration: 1.5, animations: { [weak self] in
-                self?.likeButton.setImage(UIImage(named: "heart_filled"), for: .normal)
-            })
-                print("tapped")
-        }).addDisposableTo(disposeBag)
+        likeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapLikeButton)))
+    }
+
+    @objc private func didTapLikeButton() {
+        isFavourite = !isFavourite
+        let newImage = isFavourite ? UIImage(named: "heart_filled") : UIImage(named: "heart_empty")
+        likeButton.setImage(newImage, for: .normal)
+        print("Cell isFavourite changed: ", isFavourite)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -119,7 +121,6 @@ class PostsListPhotoTableViewCell: UITableViewCell {
         titleContainer.addSubview(likeButton)
     }
 
-    
     private func setLayout() {
         posterImageView.snp.makeConstraints {
             $0.top.equalTo(titleContainer.snp.bottom)
@@ -162,26 +163,30 @@ class PostsListPhotoTableViewCell: UITableViewCell {
             $0.height.equalTo(36)
             $0.width.equalTo(36)
         }
-        
     }
     
     func setup(withItem item: Post, eventHandler: PostsListModuleInterface?) {
         captionLabel.text = item.photoCaption?.html2String
+        adjustLikeButton(withItem: item)
+        adjustCaptionContainerBackgroundColor()
+        fetchImage(item, eventHandler: eventHandler)
+        isFavourite = item.isFavourite
         tagsLabel.text = item.tags?.reduce("", { (res, element) -> String in
             return res + element + ", "
         })
-        adjustCaptionContainerBackgroundColor()
+    }
+    
+    private func fetchImage(_ item: Post, eventHandler: PostsListModuleInterface?) {
         if let imageData = item.smallPhoto {
             guard let image = UIImage(data: imageData) else { return }
             posterImageView.image = image
-            UIView.animate(withDuration: 0.35) { [weak self] in
-                self?.posterImageView.alpha = 1
-            }
         } else {
-             guard let photoPath = item.smalllPhotoPath else { print("wrong guard: ", item.type); return }
-             task = eventHandler?.updateImageView(photoPath, imageView: posterImageView, forPostEntity: item)
+            guard let photoPath = item.smalllPhotoPath else { print("wrong guard: ", item.type); return }
+            task = eventHandler?.updateImageView(photoPath, imageView: posterImageView, forPostEntity: item)
         }
-        
+        UIView.animate(withDuration: 0.35) { [weak self] in
+            self?.posterImageView.alpha = 1
+        }
     }
     
     private func adjustCaptionContainerBackgroundColor() {
@@ -192,4 +197,8 @@ class PostsListPhotoTableViewCell: UITableViewCell {
         }
     }
     
+    private func adjustLikeButton(withItem item: Post) {
+        let image = item.isFavourite ? UIImage(named: "heart_filled") : UIImage(named: "heart_empty")
+        likeButton.setImage(image, for: .normal)
+    }
 }

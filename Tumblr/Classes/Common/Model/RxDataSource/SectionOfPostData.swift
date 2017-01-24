@@ -8,6 +8,7 @@
 
 import Foundation
 import RxDataSources
+import RxSwift
 
 
 struct SectionOfPostData {
@@ -25,5 +26,10 @@ extension SectionOfPostData: SectionModelType {
         self = original
         self.items = items
     }
+}
+
+protocol ReactiveSectionModelType {
+
+    var isFavourite: Bool { get }
     
 }

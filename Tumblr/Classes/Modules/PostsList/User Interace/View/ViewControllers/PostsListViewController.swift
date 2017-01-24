@@ -81,6 +81,7 @@ class PostsListViewController: UIViewController {
               .bindTo(postsListView.postsTableView.rx.items(dataSource: dataSource))
               .addDisposableTo(disposeBag)
     }
+    
 }
 
 extension PostsListViewController: UITableViewDelegate {
@@ -101,6 +102,13 @@ extension PostsListViewController: UITableViewDelegate {
         } else {
             return nil
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let photoCell = cell as? PostsListPhotoTableViewCell else { return }
+        let postToUpdate = posts.value[indexPath.section]
+        postToUpdate.isFavourite = photoCell.isFavourite
+        eventHandler?.updateDatabsePostInfo(postId: postToUpdate.id, isFavourite: photoCell.isFavourite)
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

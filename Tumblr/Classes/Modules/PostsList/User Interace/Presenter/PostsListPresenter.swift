@@ -38,6 +38,10 @@ extension PostsListPresenter: PostsListModuleInterface {
         postsListInteractor?.cachePosts(posts)
     }
     
+    func updateDatabsePostInfo(postId id: Int, isFavourite: Bool) {
+        postsListInteractor?.updateDatabasePostInfo(postId: id, isFavourite: isFavourite)
+    }
+    
 }
 
 extension PostsListPresenter: PostsListInteractorOutput {

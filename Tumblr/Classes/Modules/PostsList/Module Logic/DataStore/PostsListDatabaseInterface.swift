@@ -13,5 +13,6 @@ protocol PostsListDatabaseInterface {
 
     func cachePostsData(_ posts: [DatabasePost])
     func fetchAllPosts() -> Observable<[DatabasePost]>
+    func setPostFavourite(postId id: Int, isFavourite: Bool)
     
 }

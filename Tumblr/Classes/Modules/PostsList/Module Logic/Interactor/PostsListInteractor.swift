@@ -57,4 +57,8 @@ extension PostsListInteractor: PostsListInteractorInput {
         dataStore?.cachePostsData(databasePostsFromPlainPosts(posts))
     }
     
+    func updateDatabasePostInfo(postId id: Int, isFavourite: Bool) {
+        dataStore?.setPostFavourite(postId: id, isFavourite: isFavourite)
+    }
+    
 }

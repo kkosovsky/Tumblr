@@ -20,6 +20,7 @@ class DatabasePost: Object {
     dynamic var smallPhoto: Data?
     dynamic var largePhoto: Data?
     dynamic var photoCaption: String?
+    dynamic var isFavourite = false
     var tags = List<Tag>()
     
     func setUp(withapiPost apiPost: ApiPost) {
@@ -47,6 +48,7 @@ class DatabasePost: Object {
         smallPhoto = post.smallPhoto
         largePhoto = post.largePhoto
         photoCaption = post.photoCaption
+        isFavourite = post.isFavourite
         post.tags?.forEach({ (apiFetchedTag) in
             let tag = Tag()
             tag.tagName = apiFetchedTag
