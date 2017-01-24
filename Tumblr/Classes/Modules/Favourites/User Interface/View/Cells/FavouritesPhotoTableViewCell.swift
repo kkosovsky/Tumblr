@@ -39,7 +39,7 @@ class FavouritesPhotoTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubviews()
         setLayout()
-        self.backgroundColor = UIColor.clear
+        backgroundColor = UIColor.clear
         selectionStyle = .none
     }
     
@@ -77,8 +77,6 @@ class FavouritesPhotoTableViewCell: UITableViewCell {
     
     private func addSubviews() {
         contentView.addSubview(photoImageView)
-        //contentView.addSubview(captionContainer)
-        //captionContainer.addSubview(captionLabel)
     }
     
     private func setLayout() {
@@ -89,21 +87,6 @@ class FavouritesPhotoTableViewCell: UITableViewCell {
             $0.bottom.equalTo(0)
             $0.height.equalTo(450)
         }
-        
-//        captionContainer.snp.makeConstraints {
-//            $0.top.equalTo(photoImageView.snp.bottom)
-//            $0.bottom.equalTo(0)
-//            $0.left.equalTo(0)
-//            $0.right.equalTo(0)
-//        }
-//        
-//        captionLabel.snp.makeConstraints {
-//            $0.left.equalTo(4)
-//            $0.right.equalTo(-4)
-//            $0.top.equalTo(0)
-//            $0.bottom.equalTo(0)
-//        }
-//        
     }
 
 }

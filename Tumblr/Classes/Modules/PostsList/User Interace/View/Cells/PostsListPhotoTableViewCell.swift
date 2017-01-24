@@ -89,7 +89,6 @@ class PostsListPhotoTableViewCell: UITableViewCell {
         isFavourite = !isFavourite
         let newImage = isFavourite ? UIImage(named: "heart_filled") : UIImage(named: "heart_empty")
         likeButton.setImage(newImage, for: .normal)
-        print("Cell isFavourite changed: ", isFavourite)
     }
     
     private func addShadow() {
@@ -168,12 +167,12 @@ class PostsListPhotoTableViewCell: UITableViewCell {
     func setup(withItem item: Post, eventHandler: PostsListModuleInterface?) {
         captionLabel.text = item.photoCaption?.html2String
         adjustLikeButton(withItem: item)
-        adjustCaptionContainerBackgroundColor()
         fetchImage(item, eventHandler: eventHandler)
         isFavourite = item.isFavourite
         tagsLabel.text = item.tags?.reduce("", { (res, element) -> String in
             return res + element + ", "
         })
+        adjustCaptionContainerBackgroundColor()
     }
     
     private func fetchImage(_ item: Post, eventHandler: PostsListModuleInterface?) {
@@ -190,7 +189,7 @@ class PostsListPhotoTableViewCell: UITableViewCell {
     }
     
     private func adjustCaptionContainerBackgroundColor() {
-        if captionLabel.text?.characters.count ?? 0 > 0 || tagsLabel.text?.characters.count ?? 0 > 0 {
+        if captionLabel.text?.characters.count ?? 0 > 0 || tagsLabel.text != nil  {
             captionContainer.backgroundColor = UIColor.white
         } else {
             captionContainer.backgroundColor = UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0)

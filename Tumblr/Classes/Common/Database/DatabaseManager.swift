@@ -32,12 +32,10 @@ class DatabaseManager {
     func setPostFavourite(postId id: Int, isFavourite: Bool) {
         guard let post = realm.objects(DatabasePost.self).filter("id == %@", id).first else { return }
         if post.isFavourite != isFavourite {
-            print("Gonna change post is favourite")
             try! realm.write {
                 post.isFavourite = isFavourite
             }
         }
-        print("After change: ", post.isFavourite)
     }
     
     func printAllPosts() {

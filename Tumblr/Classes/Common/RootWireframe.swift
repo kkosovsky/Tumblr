@@ -35,15 +35,6 @@ class RootWireframe: NSObject {
     private func instantiateTabBarController(withNavigationControllers navigationControllers: [UINavigationController]) -> UITabBarController {
         let tabBarController = UITabBarController(nibName: nil, bundle: nil)
         tabBarController.viewControllers = navigationControllers
-        tabBarController.delegate = self
         return tabBarController
     }
-}
-
-extension RootWireframe: UITabBarControllerDelegate {
-   
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        // TODO: next scene
-    }
-    
 }

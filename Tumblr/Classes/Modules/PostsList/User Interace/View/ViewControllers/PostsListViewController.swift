@@ -48,7 +48,7 @@ class PostsListViewController: UIViewController {
         bindPostsToTableView()
         subscribePosts()
         addSearchBar()
-        postsListView.postsTableView.estimatedRowHeight = 400
+        postsListView.postsTableView.estimatedRowHeight = 500
         postsListView.postsTableView.rowHeight = UITableViewAutomaticDimension
     }
     
