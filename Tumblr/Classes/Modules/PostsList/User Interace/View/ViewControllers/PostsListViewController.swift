@@ -106,9 +106,12 @@ extension PostsListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let photoCell = cell as? PostsListPhotoTableViewCell else { return }
-        let postToUpdate = posts.value[indexPath.section]
-        postToUpdate.isFavourite = photoCell.isFavourite
-        eventHandler?.updateDatabsePostInfo(postId: postToUpdate.id, isFavourite: photoCell.isFavourite)
+        //FIX IT
+        if posts.value.count > indexPath.section {
+            let postToUpdate = posts.value[indexPath.section]
+            postToUpdate.isFavourite = photoCell.isFavourite
+            eventHandler?.updateDatabsePostInfo(postId: postToUpdate.id, isFavourite: photoCell.isFavourite)
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

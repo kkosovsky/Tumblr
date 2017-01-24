@@ -55,7 +55,7 @@ class PostsListPhotoTableViewCell: UITableViewCell {
         return captionLabel
     }()
     
-    private static func createContainerView() -> UIView {
+    static func createContainerView() -> UIView {
         let container = UIView(frame: .zero)
         container.backgroundColor = UIColor.white
         return container
@@ -75,13 +75,6 @@ class PostsListPhotoTableViewCell: UITableViewCell {
         selectionStyle = .none
         likeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapLikeButton)))
     }
-
-    @objc private func didTapLikeButton() {
-        isFavourite = !isFavourite
-        let newImage = isFavourite ? UIImage(named: "heart_filled") : UIImage(named: "heart_empty")
-        likeButton.setImage(newImage, for: .normal)
-        print("Cell isFavourite changed: ", isFavourite)
-    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -90,6 +83,13 @@ class PostsListPhotoTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         addShadow()
+    }
+    
+    @objc private func didTapLikeButton() {
+        isFavourite = !isFavourite
+        let newImage = isFavourite ? UIImage(named: "heart_filled") : UIImage(named: "heart_empty")
+        likeButton.setImage(newImage, for: .normal)
+        print("Cell isFavourite changed: ", isFavourite)
     }
     
     private func addShadow() {

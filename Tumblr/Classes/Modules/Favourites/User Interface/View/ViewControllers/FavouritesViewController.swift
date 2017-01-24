@@ -40,6 +40,8 @@ class FavouritesViewController: UIViewController {
         configureDataSource()
         addUISegmentedControl()
         bindPostsToTableView()
+        favouritesView.favouritesTableView.estimatedRowHeight = 400
+        favouritesView.favouritesTableView.rowHeight = UITableViewAutomaticDimension
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -73,6 +75,7 @@ class FavouritesViewController: UIViewController {
         segmentedControl.selectedSegmentIndex = 0
         navigationItem.titleView = segmentedControl
         segmentedControl.rx.controlEvent(.valueChanged).subscribe(onNext: { [weak self] in
+            print(segmentedControl.selectedSegmentIndex)
             self?.eventHandler?.sortUsers(by: segmentedControl.selectedSegmentIndex)
         }).addDisposableTo(disposeBag)
     }
@@ -103,6 +106,13 @@ extension FavouritesViewController: UITableViewDelegate {
         let view = UIView()
         view.backgroundColor = UIColor.clear
         return view
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let favouriteCell = cell as? FavouritesPhotoTableViewCell else { return }
+        UIView.animate(withDuration: 0.35) {
+            favouriteCell.photoImageView.alpha = 1
+        }
     }
     
 }

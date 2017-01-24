@@ -27,7 +27,7 @@ extension FavouritesPresenter: FavouritesModuleInterface {
     
     func sortUsers(by index: Int) {
         if index == 0 {
-            favouritesViewController?.posts.value.sort { $0.0.date < $0.1.date }
+            favouritesViewController?.posts.value.sort { $0.0.id < $0.1.id }
         } else {
             favouritesViewController?.posts.value.sort { $0.0.type < $0.1.type }
         }
