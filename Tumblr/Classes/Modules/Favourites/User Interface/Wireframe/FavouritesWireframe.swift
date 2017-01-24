@@ -16,8 +16,8 @@ class FavouritesWireframe {
     
     func initializeInterface() {
         guard let favouritesPresenter = favouritesPresenter else { return }
-        
         favouritesViewController = FavouritesViewController(withEventHandler: favouritesPresenter)
+        favouritesPresenter.favouritesViewController = favouritesViewController
         rootWireframe?.appendToWireframe(favouritesViewController)
     }
     
