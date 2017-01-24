@@ -41,6 +41,7 @@ class PostsListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        DatabaseManager().clearDatabase()
         postsListView.postsTableView.delegate = self
         postsListView.postsTableView.register(PostsListPhotoTableViewCell.self)
         configureDataSource()

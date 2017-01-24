@@ -36,11 +36,15 @@ class FavouritesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         favouritesView.favouritesTableView.delegate = self
-        favouritesView.favouritesTableView.register(PostsListPhotoTableViewCell.self)
-        
+        favouritesView.favouritesTableView.register(FavouritesPhotoTableViewCell.self)
         configureDataSource()
-        bindPostsToTableView()
         addUISegmentedControl()
+        bindPostsToTableView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        fetchPosts()
     }
     
     private func fetchPosts() {
@@ -51,7 +55,7 @@ class FavouritesViewController: UIViewController {
     
     private func configureDataSource() {
         dataSource.configureCell = { dataSource, tableView, indexPath, item in
-            let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as FavouritesTableViewCell
+            let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as FavouritesPhotoTableViewCell
             cell.setup(withItem: item)
             return cell
         }

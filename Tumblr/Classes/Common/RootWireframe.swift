@@ -17,6 +17,7 @@ class RootWireframe: NSObject {
         let tabBarController = instantiateTabBarController(withNavigationControllers: navigationControllers)
         guard let items = tabBarController.tabBar.items else { return }
         items[0].title = "Posts"
+        items[1].title = "Favourites"
         window.rootViewController = tabBarController
     }
     

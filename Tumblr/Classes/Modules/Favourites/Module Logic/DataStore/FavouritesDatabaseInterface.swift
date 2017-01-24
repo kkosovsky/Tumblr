@@ -7,7 +7,10 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol FavouritesDatabaseInterface {
+    
+    func fetchAllPosts() -> Observable<[DatabasePost]>
     
 }

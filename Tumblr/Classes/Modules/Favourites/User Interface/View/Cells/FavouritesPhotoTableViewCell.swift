@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavouritesTableViewCell: UITableViewCell {
+class FavouritesPhotoTableViewCell: UITableViewCell {
 
     
     func setup(withItem item: Post) {

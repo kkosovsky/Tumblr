@@ -45,6 +45,7 @@ class Post {
         smallPhoto = databasePost.smallPhoto
         largePhoto = databasePost.largePhoto
         photoCaption = databasePost.photoCaption
+        isFavourite = databasePost.isFavourite
         tags = databasePost.tags.map{ $0.tagName }
     }
     

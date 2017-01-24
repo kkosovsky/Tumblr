@@ -30,14 +30,22 @@ class DatabaseManager {
     }
     
     func setPostFavourite(postId id: Int, isFavourite: Bool) {
-        let post = realm.objects(DatabasePost.self).filter("id == %@", id).first
-        try! realm.write {
-            post?.isFavourite = isFavourite
+        guard let post = realm.objects(DatabasePost.self).filter("id == %@", id).first else { return }
+        if post.isFavourite != isFavourite {
+            print("Gonna change post is favourite")
+            try! realm.write {
+                post.isFavourite = isFavourite
+            }
         }
+        print("After change: ", post.isFavourite)
     }
     
     func printAllPosts() {
-        print(realm.objects(DatabasePost.self).filter { $0.isFavourite == true} )
+        print(realm.objects(DatabasePost.self))
+    }
+    
+    func getAllPosts() -> Array<DatabasePost> {
+        return Array(realm.objects(DatabasePost.self))
     }
     
     func cachePosts(_ posts: [DatabasePost]) {

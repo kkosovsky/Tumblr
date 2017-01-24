@@ -7,6 +7,17 @@
 //
 
 import Foundation
+import RxSwift
 
-protocol FavouritesInteractorInput {}
-protocol FavouritesInteractorOutput {}
+protocol FavouritesInteractorInput {
+
+    func fetchFavouritePosts(source: Source) -> Observable<[Post]>
+    
+}
+
+
+protocol FavouritesInteractorOutput {
+
+    func presentData(_ databasePosts: Observable<[Post]>) -> Observable<[Post]>
+    
+}

@@ -12,10 +12,14 @@ import RxSwift
 class FavouritesPresenter {
    
     var favouritesViewController: FavouritesViewController?
-    
+    var favouritesInteractor: FavouritesInteractorInput?
 }
 
 extension FavouritesPresenter: FavouritesInteractorOutput {
+    
+    func presentData(_ databasePosts: Observable<[Post]>) -> Observable<[Post]> {
+        return databasePosts
+    }
     
 }
 
@@ -30,7 +34,8 @@ extension FavouritesPresenter: FavouritesModuleInterface {
     }
     
     func fetchFavouritePosts(_ source: Source) -> Observable<[Post]> {
-        return Observable.empty()
+        guard let interactor = favouritesInteractor else { return Observable.empty() }
+        return interactor.fetchFavouritePosts(source: .Database)
     }
     
 }
