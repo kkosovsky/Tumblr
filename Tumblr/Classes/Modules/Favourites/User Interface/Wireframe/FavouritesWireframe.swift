@@ -6,7 +6,7 @@
 //  Copyright © 2017 Kamil Kosowski. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class FavouritesWireframe {
     
@@ -17,6 +17,7 @@ class FavouritesWireframe {
     func initializeInterface() {
         guard let favouritesPresenter = favouritesPresenter else { return }
         favouritesViewController = FavouritesViewController(withEventHandler: favouritesPresenter)
+        favouritesViewController?.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
         favouritesPresenter.favouritesViewController = favouritesViewController
         rootWireframe?.appendToWireframe(favouritesViewController)
     }

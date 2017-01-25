@@ -190,7 +190,7 @@ class PostsListPhotoTableViewCell: UITableViewCell, Settable {
             guard let image = UIImage(data: imageData) else { return }
             posterImageView.image = image
         } else {
-            guard let photoPath = item.smalllPhotoPath else { print("wrong guard: ", item.type); return }
+            guard let photoPath = item.smalllPhotoPath else { return }
             task = eventHandler?.updateImageView(photoPath, imageView: posterImageView, forPostEntity: item)
         }
         UIView.animate(withDuration: 0.35) { [weak self] in

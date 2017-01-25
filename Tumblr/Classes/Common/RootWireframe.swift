@@ -15,9 +15,6 @@ class RootWireframe: NSObject {
     func show(inWindow window: UIWindow) {
         let navigationControllers = viewControllers.map { instantiateNavigationController(withFirstViewController: $0) }
         let tabBarController = instantiateTabBarController(withNavigationControllers: navigationControllers)
-        guard let items = tabBarController.tabBar.items else { return }
-        items[0].title = "Posts"
-        items[1].title = "Favourites"
         window.rootViewController = tabBarController
     }
     
@@ -37,4 +34,5 @@ class RootWireframe: NSObject {
         tabBarController.viewControllers = navigationControllers
         return tabBarController
     }
+  
 }
