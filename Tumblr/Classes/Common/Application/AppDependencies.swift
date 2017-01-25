@@ -12,7 +12,7 @@ import UIKit
 class AppDependencies {
     
     var postsListWireframe = PostsListWireframe()
-    
+   
     init(forAppDelegate appDelegate: AppDelegate) {
         appDelegate.window = UIWindow(frame: UIScreen.main.bounds)
         appDelegate.window?.makeKeyAndVisible()
@@ -30,12 +30,20 @@ class AppDependencies {
         let postsListPresenter = PostsListPresenter()
         let postsListDataStore = PostsListDataStore(ApiManager(), databaseManager: DatabaseManager())
         let postsListInteractor = PostsListInteractor(postsListPresenter, dataStore: postsListDataStore)
-        
         postsListWireframe.rootWireframe = rootWireframe
         postsListWireframe.postsListPresenter = postsListPresenter
         postsListPresenter.postsListInteractor = postsListInteractor
         
+        let favouritesWireframe = FavouritesWireframe()
+        let favouritesPresenter = FavouritesPresenter()
+        let favouritesDataStore = FavouritesDataStore(DatabaseManager())
+        let favouritesInteractor = FavouritesInteractor(favouritesPresenter, dataStore: favouritesDataStore)
+        favouritesWireframe.rootWireframe = rootWireframe
+        favouritesWireframe.favouritesPresenter = favouritesPresenter
+        favouritesPresenter.favouritesInteractor = favouritesInteractor
         
+        postsListWireframe.initializeInterface()
+        favouritesWireframe.initializeInterface()
     }
     
 }

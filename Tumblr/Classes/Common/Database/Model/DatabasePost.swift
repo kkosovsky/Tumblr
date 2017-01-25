@@ -21,6 +21,7 @@ class DatabasePost: Object {
     dynamic var largePhoto: Data?
     dynamic var photoCaption: String?
     dynamic var isFavourite = false
+    dynamic var quoteText: String?
     var tags = List<Tag>()
     
     func setUp(withapiPost apiPost: ApiPost) {
@@ -36,6 +37,7 @@ class DatabasePost: Object {
             tag.tagName = apiFetchedTag
             tags.append(tag)
         })
+        quoteText = apiPost.quoteText
     }
     
     func setUp(withPlainObjectModel post: Post) {
@@ -54,6 +56,7 @@ class DatabasePost: Object {
             tag.tagName = apiFetchedTag
             tags.append(tag)
         })
+        quoteText = post.quoteText
     }
     
 }

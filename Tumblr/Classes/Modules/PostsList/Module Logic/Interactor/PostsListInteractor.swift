@@ -48,9 +48,9 @@ extension PostsListInteractor: PostsListInteractorInput {
         let databasePosts = dataStore.fetchAllPosts().flatMap { self.plainPostsFromDatabasePosts($0) }
         return postInteractorOutput.presentData(databasePosts, apiPosts: apiPosts, source: source)
     }
-    
-    func cacheImage(forImageView imageView: UIImageView, withPath path: String, forPostEntity post: Post) -> URLSessionDataTask? {
-        return dataStore?.cacheImage(forImageView: imageView, withPath: path, forPostEntity: post)
+
+    func cacheImage(_ data: Data, post: Post) {
+        dataStore?.cacheImage(data: data, forPostEntity: post)
     }
     
     func cachePosts(_ posts: [Post]) {

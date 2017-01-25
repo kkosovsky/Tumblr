@@ -11,6 +11,12 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
+protocol Settable {
+
+    func setup(withItem item: Post, eventHandler: PostsListModuleInterface?)
+    
+}
+
 class PostsListViewController: UIViewController {
     
     let disposeBag = DisposeBag()
@@ -44,11 +50,12 @@ class PostsListViewController: UIViewController {
         DatabaseManager().clearDatabase()
         postsListView.postsTableView.delegate = self
         postsListView.postsTableView.register(PostsListPhotoTableViewCell.self)
+        postsListView.postsTableView.register(QuoteTableViewCell.self)
         configureDataSource()
         bindPostsToTableView()
         subscribePosts()
         addSearchBar()
-        postsListView.postsTableView.estimatedRowHeight = 400
+        postsListView.postsTableView.estimatedRowHeight = 500
         postsListView.postsTableView.rowHeight = UITableViewAutomaticDimension
     }
     
@@ -60,32 +67,33 @@ class PostsListViewController: UIViewController {
     
     private func configureDataSource() {
         dataSource.configureCell = { [weak self] dataSource, tableView, indexPath, item in
-        guard let unwrappedSelf = self else { return UITableViewCell() }
-        let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as PostsListPhotoTableViewCell
-        cell.setup(withItem: item, eventHandler: unwrappedSelf.eventHandler)
-        return cell
+            guard let unwrappedSelf = self else { return UITableViewCell() }
+            let settable: Settable? = item.type == "photo" ? tableView.dequeueReusableCell(forIndexPath: indexPath) as PostsListPhotoTableViewCell : item.type == "quote" ? tableView.dequeueReusableCell(forIndexPath: indexPath) as QuoteTableViewCell : nil
+            settable?.setup(withItem: item, eventHandler: unwrappedSelf.eventHandler)
+            guard let cell = settable as? UITableViewCell else { return UITableViewCell() }
+            return cell
         }
     }
     
     private func addSearchBar() {
         navigationItem.titleView = searchBar
-        searchBar.rx.text.throttle(2.0, scheduler: MainScheduler.instance).subscribe { [weak self] (event) in
+        searchBar.rx.text.throttle(1.0, scheduler: MainScheduler.instance).subscribe { [weak self] (event) in
             guard let assuredSelf = self, let element = event.element else { return }
             assuredSelf.eventHandler?.feedWithPosts(.Api, blogName: element).bindTo(assuredSelf.posts).addDisposableTo(assuredSelf.disposeBag)
-        }.addDisposableTo(disposeBag)
+            }.addDisposableTo(disposeBag)
     }
     
     private func bindPostsToTableView() {
         posts.asObservable()
-              .flatMap { Observable.just( $0.map { SectionOfPostData(header: $0.id, items: [$0]) } ) }
-              .bindTo(postsListView.postsTableView.rx.items(dataSource: dataSource))
-              .addDisposableTo(disposeBag)
+            .flatMap { Observable.just( $0.map { SectionOfPostData(header: $0.id, items: [$0]) } ) }
+            .bindTo(postsListView.postsTableView.rx.items(dataSource: dataSource))
+            .addDisposableTo(disposeBag)
     }
     
 }
 
 extension PostsListViewController: UITableViewDelegate {
-
+    
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 25
     }
@@ -104,13 +112,6 @@ extension PostsListViewController: UITableViewDelegate {
         }
     }
     
-    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let photoCell = cell as? PostsListPhotoTableViewCell else { return }
-        let postToUpdate = posts.value[indexPath.section]
-        postToUpdate.isFavourite = photoCell.isFavourite
-        eventHandler?.updateDatabsePostInfo(postId: postToUpdate.id, isFavourite: photoCell.isFavourite)
-    }
-    
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let view = UIView()
         view.backgroundColor = UIColor.clear
@@ -120,5 +121,5 @@ extension PostsListViewController: UITableViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         searchBar.resignFirstResponder()
     }
-   
+    
 }

@@ -21,18 +21,4 @@ class ApiManager {
             .shareReplay(1)
     }
     
-    func fetchImage(_ imageView: UIImageView, imagePath: String, post: Post, completion: @escaping (_ data: Data) -> Void) -> URLSessionDataTask? {
-        guard let url = URL(string: imagePath) else { return nil }
-        return URLSession(configuration: .ephemeral).dataTask(with: url) { data, response, error in
-            guard let myData = data else { return }
-            guard let image = UIImage(data: myData) else { return }
-            DispatchQueue.main.async {
-                imageView.image = image
-                post.smallPhoto = myData
-                completion(myData)
-            }
-        }
-
-    }
-    
 }
