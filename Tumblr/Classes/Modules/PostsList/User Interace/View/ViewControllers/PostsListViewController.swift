@@ -11,6 +11,13 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
+protocol Settable {
+
+    func setup(withItem item: Post, eventHandler: PostsListModuleInterface?)
+    
+}
+
+
 class PostsListViewController: UIViewController {
     
     let disposeBag = DisposeBag()
@@ -61,8 +68,9 @@ class PostsListViewController: UIViewController {
     private func configureDataSource() {
         dataSource.configureCell = { [weak self] dataSource, tableView, indexPath, item in
             guard let unwrappedSelf = self else { return UITableViewCell() }
-            let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as PostsListPhotoTableViewCell
-            cell.setup(withItem: item, eventHandler: unwrappedSelf.eventHandler)
+            let settable: Settable? = item.type == "photo" ? tableView.dequeueReusableCell(forIndexPath: indexPath) as PostsListPhotoTableViewCell : item.type == "quote" ? tableView.dequeueReusableCell(forIndexPath: indexPath) as QuoteTableViewCell : nil
+            settable?.setup(withItem: item, eventHandler: unwrappedSelf.eventHandler)
+            guard let cell = settable as? UITableViewCell else { return UITableViewCell() }
             return cell
         }
     }

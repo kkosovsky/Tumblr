@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import RxSwift
 
-class PostsListPhotoTableViewCell: UITableViewCell {
+class PostsListPhotoTableViewCell: UITableViewCell, Settable {
     
     var isFavourite = false
     var displayedPostId: Int = 0

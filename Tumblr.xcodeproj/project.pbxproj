@@ -17,6 +17,7 @@
 		6A7BB8831E37B338007C51FC /* FavouritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7BB8821E37B338007C51FC /* FavouritesView.swift */; };
 		6A7BB8851E37B34D007C51FC /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7BB8841E37B34D007C51FC /* FavouritesViewController.swift */; };
 		6A7BB8871E37B363007C51FC /* FavouritesPhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7BB8861E37B363007C51FC /* FavouritesPhotoTableViewCell.swift */; };
+		6AAE70581E3845540094142C /* QuoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAE70571E3845540094142C /* QuoteTableViewCell.swift */; };
 		6ABA35691E26911D005D9EF0 /* PostsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA35681E26911D005D9EF0 /* PostsListView.swift */; };
 		6ABA356F1E2692CB005D9EF0 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA356D1E2692CB005D9EF0 /* ReusableView.swift */; };
 		6ABA35701E2692CB005D9EF0 /* UITableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA356E1E2692CB005D9EF0 /* UITableViewExtensions.swift */; };
@@ -64,6 +65,7 @@
 		6A7BB8821E37B338007C51FC /* FavouritesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavouritesView.swift; sourceTree = "<group>"; };
 		6A7BB8841E37B34D007C51FC /* FavouritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		6A7BB8861E37B363007C51FC /* FavouritesPhotoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavouritesPhotoTableViewCell.swift; sourceTree = "<group>"; };
+		6AAE70571E3845540094142C /* QuoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteTableViewCell.swift; sourceTree = "<group>"; };
 		6ABA35681E26911D005D9EF0 /* PostsListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsListView.swift; sourceTree = "<group>"; };
 		6ABA356D1E2692CB005D9EF0 /* ReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		6ABA356E1E2692CB005D9EF0 /* UITableViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtensions.swift; sourceTree = "<group>"; };
@@ -520,6 +522,7 @@
 			isa = PBXGroup;
 			children = (
 				6ABD2EAF1E2BADFC00CF816D /* PostsListPhotoTableViewCell.swift */,
+				6AAE70571E3845540094142C /* QuoteTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -693,6 +696,7 @@
 				6A7BB8721E37AF2C007C51FC /* FavouritesModuleInterface.swift in Sources */,
 				6ABD2EB61E2BB8BE00CF816D /* PostsListInteractor.swift in Sources */,
 				6A7BB8761E37B0E7007C51FC /* FavouritesDataStore.swift in Sources */,
+				6AAE70581E3845540094142C /* QuoteTableViewCell.swift in Sources */,
 				6AFAB35E1E2689D400C7FAE0 /* AppDependencies.swift in Sources */,
 				6ABD2EC61E2C060B00CF816D /* DatabaseManager.swift in Sources */,
 				6AFAB35C1E26899F00C7FAE0 /* RootWireframe.swift in Sources */,
