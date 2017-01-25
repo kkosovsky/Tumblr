@@ -59,7 +59,7 @@ extension PostsListPresenter: PostsListInteractorOutput {
         switch source {
             case .Api:
                 return apiPosts.flatMap({ (posts) -> Observable<[Post]> in
-                    return Observable.just(posts)
+                    return Observable.just(posts.filter { $0.type == "photo" || $0.type == "quote" })
                 })
             case .Database:
                 return databasePosts

@@ -71,7 +71,7 @@ class FavouritesViewController: UIViewController {
     }
     
     private func addUISegmentedControl() {
-        let segmentedControl = UISegmentedControl(items: ["Post Data", "Post Type"])
+        let segmentedControl = UISegmentedControl(items: ["Post Date", "Post Type"])
         segmentedControl.selectedSegmentIndex = 0
         navigationItem.titleView = segmentedControl
         segmentedControl.rx.controlEvent(.valueChanged).subscribe(onNext: { [weak self] in

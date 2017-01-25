@@ -13,7 +13,7 @@ class QuoteTableViewCell: UITableViewCell, Settable {
 
     private let quoteLabel: UILabel = {
         let label = UILabel(frame: .zero)
-        label.font = UIFont.italicSystemFont(ofSize: 18)
+        label.font = UIFont.italicSystemFont(ofSize: 26)
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -21,7 +21,7 @@ class QuoteTableViewCell: UITableViewCell, Settable {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = .clear
+        backgroundColor = .white
         selectionStyle = .none
         addSubviews()
         setLayout()
@@ -37,12 +37,13 @@ class QuoteTableViewCell: UITableViewCell, Settable {
     
     private func setLayout() {
         quoteLabel.snp.makeConstraints {
-            $0.edges.equalTo(0)
+            $0.top.left.equalTo(8)
+            $0.bottom.right.equalTo(-8)
         }
     }
     
     func setup(withItem item: Post, eventHandler: PostsListModuleInterface?) {
-        
+        quoteLabel.text = item.quoteText
     }
 }
 

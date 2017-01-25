@@ -21,6 +21,7 @@ struct ApiPost: Mappable {
     var photo100: String?
     var photoCaption: String?
     var tags: [String]?
+    var quoteText: String?
 
     init(map: Mapper) throws {
         try id = map.from("id")
@@ -33,5 +34,6 @@ struct ApiPost: Mappable {
         photo100 = map.optionalFrom("photo-url-100")
         photoCaption = map.optionalFrom("photo-caption")
         tags = map.optionalFrom("tags")
+        quoteText = map.optionalFrom("quote-text")
     }
 }

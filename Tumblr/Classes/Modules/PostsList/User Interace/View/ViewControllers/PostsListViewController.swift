@@ -17,7 +17,6 @@ protocol Settable {
     
 }
 
-
 class PostsListViewController: UIViewController {
     
     let disposeBag = DisposeBag()
@@ -51,6 +50,7 @@ class PostsListViewController: UIViewController {
         DatabaseManager().clearDatabase()
         postsListView.postsTableView.delegate = self
         postsListView.postsTableView.register(PostsListPhotoTableViewCell.self)
+        postsListView.postsTableView.register(QuoteTableViewCell.self)
         configureDataSource()
         bindPostsToTableView()
         subscribePosts()

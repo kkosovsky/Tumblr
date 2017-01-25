@@ -23,6 +23,7 @@ class Post {
     var photoCaption: String?
     var tags: [String]?
     var isFavourite = false
+    var quoteText: String?
     
     init(_ apiPost: ApiPost) {
         id = Post.idFromApiPost(apiPost.id)
@@ -33,6 +34,7 @@ class Post {
         smalllPhotoPath = findThumbnailPhotoPath(apiPost)
         photoCaption = apiPost.photoCaption
         tags = apiPost.tags
+        quoteText = apiPost.quoteText
     }
     
     init(_ databasePost: DatabasePost) {
@@ -47,6 +49,7 @@ class Post {
         photoCaption = databasePost.photoCaption
         isFavourite = databasePost.isFavourite
         tags = databasePost.tags.map{ $0.tagName }
+        quoteText = databasePost.quoteText
     }
     
     private func findLargePhotoPath(_ apiPost: ApiPost) -> String? {
