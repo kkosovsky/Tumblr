@@ -37,10 +37,8 @@ extension PostsListDataStore: PostsListNetworkInterface {
         return apiManager.requestPosts(endpoint: Endpoint.getAllPosts(blog))
     }
     
-    func cacheImage(forImageView imageView: UIImageView, withPath path: String, forPostEntity post: Post) -> URLSessionDataTask? {
-        return apiManager?.fetchImage(imageView, imagePath: path, post: post) { [weak self] data in
-            self?.databaseManager?.cacheImage(data, withId: post.id)
-        }
+    func cacheImage(data: Data, forPostEntity post: Post)  {
+        databaseManager?.cacheImage(data, withId: post.id)
     }
     
 }

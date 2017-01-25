@@ -21,6 +21,7 @@ class PostsListWireframe {
     func initializeInterface() {
         guard let postsListPresenter = postsListPresenter else { return }
         postsListViewController = PostsListViewController(withEventHandler: postsListPresenter)
+        postsListPresenter.postsListViewController = postsListViewController
         rootWireframe?.appendToWireframe(postsListViewController)
     }
     

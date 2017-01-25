@@ -20,7 +20,7 @@ enum Source {
 class PostsListPresenter {
     
     var postsListInteractor: PostsListInteractorInput?
-    
+    var postsListViewController: PostsListViewController?
 }
 
 extension PostsListPresenter: PostsListModuleInterface {
@@ -31,14 +31,23 @@ extension PostsListPresenter: PostsListModuleInterface {
     }
     
     func updateImageView(_ imagePath: String, imageView: UIImageView, forPostEntity post: Post) -> URLSessionDataTask? {
-        return postsListInteractor?.cacheImage(forImageView: imageView, withPath: imagePath, forPostEntity: post)
+        guard let url = URL(string: imagePath) else { return nil }
+        return URLSession(configuration: .ephemeral).dataTask(with: url) { [weak self] data, response, error in
+            guard let imageData = data else { return }
+            post.smallPhoto = imageData
+            DispatchQueue.main.async {
+                imageView.image = UIImage(data:imageData)
+                self?.postsListInteractor?.cacheImage(imageData, post: post)
+            }
+        }
     }
     
     func passPostsForCache(_ posts: [Post]) {
         postsListInteractor?.cachePosts(posts)
     }
     
-    func updateDatabsePostInfo(postId id: Int, isFavourite: Bool) {
+    func updateDatabasePostInfo(_ isFavourite: Bool, postId id: Int) {
+        postsListViewController?.posts.value.first { $0.id == id }?.isFavourite = isFavourite
         postsListInteractor?.updateDatabasePostInfo(postId: id, isFavourite: isFavourite)
     }
     

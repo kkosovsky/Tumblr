@@ -76,7 +76,7 @@ class FavouritesPhotoTableViewCell: UITableViewCell {
     }
     
     private func addSubviews() {
-        contentView.addSubview(photoImageView)
+        addSubview(photoImageView)
     }
     
     private func setLayout() {

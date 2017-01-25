@@ -36,10 +36,7 @@ class PostsListView: UIView {
     
     private func setupLayout() {
         postsTableView.snp.makeConstraints {
-            $0.top.equalTo(0)
-            $0.left.equalTo(16)
-            $0.right.equalTo(-16)
-            $0.bottom.equalTo(0)
+            $0.edges.equalTo(0)
         }
     }
 

@@ -60,10 +60,10 @@ class PostsListViewController: UIViewController {
     
     private func configureDataSource() {
         dataSource.configureCell = { [weak self] dataSource, tableView, indexPath, item in
-        guard let unwrappedSelf = self else { return UITableViewCell() }
-        let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as PostsListPhotoTableViewCell
-        cell.setup(withItem: item, eventHandler: unwrappedSelf.eventHandler)
-        return cell
+            guard let unwrappedSelf = self else { return UITableViewCell() }
+            let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as PostsListPhotoTableViewCell
+            cell.setup(withItem: item, eventHandler: unwrappedSelf.eventHandler)
+            return cell
         }
     }
     
@@ -72,20 +72,20 @@ class PostsListViewController: UIViewController {
         searchBar.rx.text.throttle(1.0, scheduler: MainScheduler.instance).subscribe { [weak self] (event) in
             guard let assuredSelf = self, let element = event.element else { return }
             assuredSelf.eventHandler?.feedWithPosts(.Api, blogName: element).bindTo(assuredSelf.posts).addDisposableTo(assuredSelf.disposeBag)
-        }.addDisposableTo(disposeBag)
+            }.addDisposableTo(disposeBag)
     }
     
     private func bindPostsToTableView() {
         posts.asObservable()
-              .flatMap { Observable.just( $0.map { SectionOfPostData(header: $0.id, items: [$0]) } ) }
-              .bindTo(postsListView.postsTableView.rx.items(dataSource: dataSource))
-              .addDisposableTo(disposeBag)
+            .flatMap { Observable.just( $0.map { SectionOfPostData(header: $0.id, items: [$0]) } ) }
+            .bindTo(postsListView.postsTableView.rx.items(dataSource: dataSource))
+            .addDisposableTo(disposeBag)
     }
     
 }
 
 extension PostsListViewController: UITableViewDelegate {
-
+    
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 25
     }
@@ -104,16 +104,6 @@ extension PostsListViewController: UITableViewDelegate {
         }
     }
     
-    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let photoCell = cell as? PostsListPhotoTableViewCell else { return }
-        //FIX IT
-        if posts.value.count > indexPath.section {
-            let postToUpdate = posts.value[indexPath.section]
-            postToUpdate.isFavourite = photoCell.isFavourite
-            eventHandler?.updateDatabsePostInfo(postId: postToUpdate.id, isFavourite: photoCell.isFavourite)
-        }
-    }
-    
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let view = UIView()
         view.backgroundColor = UIColor.clear
@@ -123,5 +113,5 @@ extension PostsListViewController: UITableViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         searchBar.resignFirstResponder()
     }
-   
+    
 }

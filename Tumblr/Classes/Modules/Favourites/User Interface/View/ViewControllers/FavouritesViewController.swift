@@ -40,7 +40,7 @@ class FavouritesViewController: UIViewController {
         configureDataSource()
         addUISegmentedControl()
         bindPostsToTableView()
-        favouritesView.favouritesTableView.estimatedRowHeight = 400
+        favouritesView.favouritesTableView.estimatedRowHeight = 450
         favouritesView.favouritesTableView.rowHeight = UITableViewAutomaticDimension
     }
     
@@ -75,7 +75,6 @@ class FavouritesViewController: UIViewController {
         segmentedControl.selectedSegmentIndex = 0
         navigationItem.titleView = segmentedControl
         segmentedControl.rx.controlEvent(.valueChanged).subscribe(onNext: { [weak self] in
-            print(segmentedControl.selectedSegmentIndex)
             self?.eventHandler?.sortUsers(by: segmentedControl.selectedSegmentIndex)
         }).addDisposableTo(disposeBag)
     }

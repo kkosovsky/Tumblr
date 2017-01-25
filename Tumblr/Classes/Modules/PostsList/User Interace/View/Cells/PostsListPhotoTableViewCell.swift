@@ -12,12 +12,79 @@ import RxSwift
 
 class PostsListPhotoTableViewCell: UITableViewCell {
     
+    var isFavourite = false
+    var displayedPostId: Int = 0
+    var eventHandler: PostsListModuleInterface?
+    
+    var task: URLSessionDataTask? {
+        didSet {
+            task?.resume()
+        }
+    }
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor = .clear
+        selectionStyle = .none
+        addSubviews()
+        setLayout()
+        likeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapLikeButton)))
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: Reuse
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        task?.cancel()
+        task = nil
+        tagsLabel.text = nil
+        captionLabel.text = nil
+        posterImageView.image = UIImage(named: "placeholder")
+        captionContainer.backgroundColor = UIColor.white
+        posterImageView.alpha = 0
+    }
+    
+    // MARK: Cell configuration
+    
+    func setup(withItem item: Post, eventHandler: PostsListModuleInterface?) {
+        self.eventHandler = eventHandler
+        displayedPostId = item.id
+        captionLabel.text = item.photoCaption?.html2String
+        adjustLikeButton(withItem: item)
+        setImage(item, eventHandler: eventHandler)
+        isFavourite = item.isFavourite
+        tagsLabel.text = item.tags?.reduce("", { (res, element) -> String in
+            return res + element + ", "
+        })
+        adjustCaptionContainerBackgroundColor()
+    }
+    
+    // MARK: Subviews
+    
+    private func addSubviews() {
+        contentView.addSubview(cellContainer)
+        cellContainer.addSubview(posterImageView)
+        cellContainer.addSubview(captionContainer)
+        captionContainer.addSubview(tagsLabel)
+        captionContainer.addSubview(captionLabel)
+        cellContainer.addSubview(titleContainer)
+        titleContainer.addSubview(likeButton)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        addShadow()
+    }
+    
+    private let cellContainer = PostsListPhotoTableViewCell.createContainerView(backgroundColor: .clear)
     private let titleContainer = PostsListPhotoTableViewCell.createContainerView()
     private let captionContainer = PostsListPhotoTableViewCell.createContainerView()
-    private let disposeBag = DisposeBag()
-    var isFavourite = false
     
-    fileprivate let posterImageView: UIImageView = {
+    private let posterImageView: UIImageView = {
         let posterImageView = UIImageView(frame: .zero)
         posterImageView.image = UIImage(named: "placeholder")
         posterImageView.isUserInteractionEnabled = true
@@ -55,98 +122,42 @@ class PostsListPhotoTableViewCell: UITableViewCell {
         return captionLabel
     }()
     
-    static func createContainerView() -> UIView {
+    static func createContainerView(backgroundColor: UIColor = .white) -> UIView {
         let container = UIView(frame: .zero)
-        container.backgroundColor = UIColor.white
+        container.backgroundColor = backgroundColor
         return container
     }
     
-    var task: URLSessionDataTask? {
-        didSet {
-            task?.resume()
-        }
-    }
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubviews()
-        setLayout()
-        self.backgroundColor = UIColor.clear
-        selectionStyle = .none
-        likeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapLikeButton)))
-    }
+    // MARK: Layout
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        addShadow()
-    }
-    
-    @objc private func didTapLikeButton() {
-        isFavourite = !isFavourite
-        let newImage = isFavourite ? UIImage(named: "heart_filled") : UIImage(named: "heart_empty")
-        likeButton.setImage(newImage, for: .normal)
-    }
-    
-    private func addShadow() {
-        let shadowPath = UIBezierPath(rect: bounds)
-        layer.masksToBounds = false
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOffset = CGSize(width: 0.0, height: 5.0)
-        layer.shadowOpacity = 0.5
-        layer.shadowPath = shadowPath.cgPath
-    }
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        task?.cancel()
-        task = nil
-        tagsLabel.text = nil
-        captionLabel.text = nil
-        posterImageView.image = UIImage(named: "placeholder")
-        captionContainer.backgroundColor = UIColor.white
-        posterImageView.alpha = 0
-    }
-    
-    private func addSubviews() {
-        contentView.addSubview(posterImageView)
-        contentView.addSubview(captionContainer)
-        captionContainer.addSubview(tagsLabel)
-        captionContainer.addSubview(captionLabel)
-        contentView.addSubview(titleContainer)
-        titleContainer.addSubview(likeButton)
-    }
-
     private func setLayout() {
+        cellContainer.snp.makeConstraints {
+            $0.top.bottom.equalTo(0)
+            $0.left.equalTo(16)
+            $0.right.equalTo(-16)
+        }
+        
         posterImageView.snp.makeConstraints {
             $0.top.equalTo(titleContainer.snp.bottom)
-            $0.left.equalTo(0)
-            $0.right.equalTo(0)
+            $0.left.right.equalTo(0)
             $0.height.equalTo(450)
         }
         
-        tagsLabel.snp.makeConstraints {
-            $0.left.equalTo(4)
-            $0.right.equalTo(likeButton.snp.left).offset( -4)
-            $0.top.equalTo(8)
-        }
-        
         titleContainer.snp.makeConstraints {
-            $0.top.equalTo(0)
+            $0.top.left.right.equalTo(0)
             $0.bottom.equalTo(posterImageView.snp.top)
-            $0.left.equalTo(0)
-            $0.right.equalTo(0)
             $0.height.equalTo(50)
         }
         
         captionContainer.snp.makeConstraints {
             $0.top.equalTo(posterImageView.snp.bottom)
-            $0.bottom.equalTo(0)
-            $0.left.equalTo(0)
-            $0.right.equalTo(0)
+            $0.bottom.left.right.equalTo(0)
+        }
+        
+        tagsLabel.snp.makeConstraints {
+            $0.left.equalTo(4)
+            $0.top.equalTo(4)
         }
 
         captionLabel.snp.makeConstraints {
@@ -159,23 +170,22 @@ class PostsListPhotoTableViewCell: UITableViewCell {
         likeButton.snp.makeConstraints {
             $0.centerYWithinMargins.equalTo(0)
             $0.right.equalTo(-4)
-            $0.height.equalTo(36)
-            $0.width.equalTo(36)
+            $0.size.equalTo(CGSize(width: 36, height: 36))
         }
     }
     
-    func setup(withItem item: Post, eventHandler: PostsListModuleInterface?) {
-        captionLabel.text = item.photoCaption?.html2String
-        adjustLikeButton(withItem: item)
-        fetchImage(item, eventHandler: eventHandler)
-        isFavourite = item.isFavourite
-        tagsLabel.text = item.tags?.reduce("", { (res, element) -> String in
-            return res + element + ", "
-        })
-        adjustCaptionContainerBackgroundColor()
+    // MARK: Actions
+    
+    @objc private func didTapLikeButton() {
+        isFavourite = !isFavourite
+        let newImage = isFavourite ? UIImage(named: "heart_filled") : UIImage(named: "heart_empty")
+        likeButton.setImage(newImage, for: .normal)
+        eventHandler?.updateDatabasePostInfo(isFavourite, postId: displayedPostId)
     }
     
-    private func fetchImage(_ item: Post, eventHandler: PostsListModuleInterface?) {
+    // MARK: Helpers
+    
+    private func setImage(_ item: Post, eventHandler: PostsListModuleInterface?) {
         if let imageData = item.smallPhoto {
             guard let image = UIImage(data: imageData) else { return }
             posterImageView.image = image
@@ -200,4 +210,14 @@ class PostsListPhotoTableViewCell: UITableViewCell {
         let image = item.isFavourite ? UIImage(named: "heart_filled") : UIImage(named: "heart_empty")
         likeButton.setImage(image, for: .normal)
     }
+    
+    private func addShadow() {
+        let shadowPath = UIBezierPath(rect: bounds)
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0.0, height: 5.0)
+        layer.shadowOpacity = 0.5
+        layer.shadowPath = shadowPath.cgPath
+    }
+    
 }
